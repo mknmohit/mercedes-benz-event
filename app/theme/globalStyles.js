@@ -1,10 +1,16 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+
   html,
   body {
-    height: 100%;
-    width: 100%;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  html > body {
+    height: auto;
+    width: auto;
   }
 
   body {
@@ -12,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body.fontLoaded {
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Work Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
   #app {
@@ -25,6 +31,11 @@ const GlobalStyle = createGlobalStyle`
   label {
     font-family: Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
   }
 `;
 

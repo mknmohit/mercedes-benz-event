@@ -7,8 +7,12 @@
 
 import React from 'react';
 
+import Registration from 'components/Registration';
+
 export default function HomePage() {
   return (
-    <h1>Homepage</h1>
+    <div>
+      <Registration />
+    </div>
   );
 }
