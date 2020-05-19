@@ -6,6 +6,7 @@
 
 import React, { useState } from 'react';
 import { Row, Col } from 'antd';
+import { isEmpty } from 'lodash';
 
 import CarImg from 'images/reg.jpg';
 import InputField from 'components/InputField';
@@ -19,7 +20,7 @@ function Registration() {
   const [formData, setFormData] = useState({
     name: '',
     mobile: '',
-    checkbox: true,
+    checkbox: false,
   });
 
   const handleRegister = () => {
@@ -29,13 +30,28 @@ function Registration() {
     }, 15000);
   };
 
-  const handleInputChange = () => {
+  const handleInputChange = event => {
+    const {
+      target: {
+        name,
+        value,
+        checked,
+        type
+      }
+    } = event
+
+    const updatedValue = type === 'checkbox' ? checked : value
     setFormData({
-      name: '',
-      mobile: '',
-      checkbox: true,
-    });
+      ...formData,
+      [name]: updatedValue });
   };
+
+
+  const isEmptyFormData = () => {
+    const { name, mobile, checkbox } = formData
+
+    return !(!isEmpty(name) && !isEmpty(mobile) && checkbox)
+  }
 
   return (
     <Row>
@@ -59,7 +75,11 @@ function Registration() {
             value={formData.mobile}
             onChange={handleInputChange}
           />
-          <Styled.Checkbox checked={formData.checkbox}>
+          <Styled.Checkbox
+            checked={formData.checkbox}
+            name="checkbox"
+            onChange={handleInputChange}
+          >
             I accept all{' '}
             <Styled.Anchor href="#">terms &amp; condition</Styled.Anchor>
           </Styled.Checkbox>
@@ -68,6 +88,7 @@ function Registration() {
               justify="space-between"
               fontSize={24}
               loading={isLoading}
+              disabled={isEmptyFormData()}
               onClick={handleRegister}
             >
               <>

@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from './style';
 
-function Button({ children, type, size, justify, fontSize, loading, onClick }) {
+function Button({ children, type, size, justify, fontSize, loading, disabled, onClick }) {
   return (
     <Styled.Btn
       type={type}
@@ -16,6 +16,7 @@ function Button({ children, type, size, justify, fontSize, loading, onClick }) {
       justify={justify}
       fontSize={fontSize}
       loading={loading}
+      disabled={disabled}
       onClick={onClick}
     >
       {children}
@@ -30,6 +31,7 @@ Button.propTypes = {
   justify: PropTypes.string,
   fontSize: PropTypes.number,
   loading: PropTypes.bool,
+  disabled: PropTypes.bool,
   onClick: PropTypes.func,
 };
 

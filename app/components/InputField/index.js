@@ -8,15 +8,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from './style';
 
-function InputField({ type, placeholder, value, onChange }) {
+function InputField({ type, placeholder, value, onChange, name }) {
   return (
     <Styled.Root>
       <Styled.Field
         type={type}
         placeholder={placeholder}
-        allowClear
+        name={name}
         value={value}
         onChange={onChange}
+        allowClear
       />
     </Styled.Root>
   );
@@ -25,6 +26,7 @@ function InputField({ type, placeholder, value, onChange }) {
 InputField.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
+  name: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func,
 };
