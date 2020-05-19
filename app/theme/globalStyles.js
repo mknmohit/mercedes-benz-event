@@ -37,6 +37,10 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: auto;
   }
+
+  ::placeholder {
+    color: #949494;
+  }
 `;
 
 export default GlobalStyle;
