@@ -12,7 +12,11 @@ const Field = styled(Input)`
     height: 56px;
     border: 1px solid #c2c2c2;
     padding-left: 20px;
-    font-size: 25px;
+
+    .ant-input,
+    .ant-input-clear-icon {
+      font-size: 20px;
+    }
   }
 `;
 

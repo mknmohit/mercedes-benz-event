@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
+import fonts from 'theme/fonts';
 
 const GlobalStyle = createGlobalStyle`
+
+  ${fonts()}
 
   html,
   body {
@@ -14,23 +17,27 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Daimler CS', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
   body.fontLoaded {
-    font-family: 'Work Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Daimler CS', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
   #app {
-    background-color: #fafafa;
+    background-color: #fff;
     min-height: 100%;
     min-width: 100%;
   }
 
   p,
   label {
-    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Daimler CS', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.5em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'CorporateACyr', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
   img {
@@ -41,6 +48,20 @@ const GlobalStyle = createGlobalStyle`
   ::placeholder {
     color: #949494;
   }
+
+  .ant-message .anticon {
+    && {
+      top: 0;
+    }
+  }
+
+  .ant-message-custom-content {
+    && {
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+
 `;
 
 export default GlobalStyle;

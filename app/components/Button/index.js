@@ -8,7 +8,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from './style';
 
-function Button({ children, type, size, justify, fontSize, loading, disabled, onClick }) {
+function Button({
+  children,
+  type,
+  size,
+  justify,
+  fontSize,
+  loading,
+  disabled,
+  onClick,
+}) {
   return (
     <Styled.Btn
       type={type}

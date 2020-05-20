@@ -8,3 +8,10 @@
  * Follow this format:
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
+
+export const SIGN_IN = 'app/App/SIGN_IN';
+export const SIGN_IN_SUCCESS = 'app/App/SIGN_IN_SUCCESS';
+export const SIGN_IN_ERROR = 'app/App/SIGN_IN_ERROR';
+
+export const REGISTER_SUCCESS = 'app/HomePage/REGISTER_SUCCESS';
+export const REGISTER_ERROR = 'app/HomePage/REGISTER_ERROR';
