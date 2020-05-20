@@ -5,6 +5,7 @@
  */
 
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col } from 'antd';
 import { isEmpty } from 'lodash';
 
@@ -15,7 +16,7 @@ import { RightOutlined } from '@ant-design/icons';
 
 import Styled from './style';
 
-function Registration() {
+function Registration({ onRegister }) {
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -24,10 +25,19 @@ function Registration() {
   });
 
   const handleRegister = () => {
+    const { name, mobile } = formData
+
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
     }, 15000);
+
+    const params = {
+      name,
+      mobile,
+      email: `${name}${mobile}@dj.com`,
+    }
+    onRegister(params)
   };
 
   const handleInputChange = event => {
@@ -102,5 +112,9 @@ function Registration() {
     </Row>
   );
 }
+
+Registration.propTypes = {
+  onRegister: PropTypes.func,
+};
 
 export default Registration;
