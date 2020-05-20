@@ -13,7 +13,8 @@ const Field = styled(Input)`
     border: 1px solid #c2c2c2;
     padding-left: 20px;
 
-    .ant-input, .ant-input-clear-icon {
+    .ant-input,
+    .ant-input-clear-icon {
       font-size: 20px;
     }
   }

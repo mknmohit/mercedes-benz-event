@@ -13,7 +13,13 @@ function Router({ userData, isAuthenticated }) {
       <Route
         exact
         path="/"
-        render={routeProps => <HomePage {...routeProps} userData={userData} isAuthenticated={isAuthenticated} />}
+        render={routeProps => (
+          <HomePage
+            {...routeProps}
+            userData={userData}
+            isAuthenticated={isAuthenticated}
+          />
+        )}
       />
       <Route component={NotFoundPage} />
     </Switch>

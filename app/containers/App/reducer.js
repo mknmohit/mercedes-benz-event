@@ -5,9 +5,7 @@
  */
 import produce from 'immer';
 import {
-  SIGN_IN,
   SIGN_IN_SUCCESS,
-  SIGN_IN_ERROR,
   REGISTER_SUCCESS,
 } from './constants';
 

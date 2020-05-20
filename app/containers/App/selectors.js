@@ -27,8 +27,4 @@ const makeSelectLocation = () =>
     routerState => routerState.location,
   );
 
-export {
-  makeSelectUserData,
-  makeSelectLocation,
-  makeSelectIsAuth,
-};
+export { makeSelectUserData, makeSelectLocation, makeSelectIsAuth };

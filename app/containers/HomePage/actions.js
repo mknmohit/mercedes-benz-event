@@ -3,13 +3,9 @@
  * HomePage actions
  *
  */
-import {
-  REGISTER,
-} from './constants';
+import { REGISTER } from './constants';
 
-export const register = params => {
-  return {
-    type: REGISTER,
-    params,
-  };
-}
+export const register = params => ({
+  type: REGISTER,
+  params,
+});

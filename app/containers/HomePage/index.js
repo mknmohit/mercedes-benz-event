@@ -24,15 +24,11 @@ export function HomePage({ onRegister, userData, isAuthenticated }) {
   useInjectSaga({ key: 'homePage', saga });
 
   const handleRegistration = params => {
-    onRegister(params)
-  }
+    onRegister(params);
+  };
 
-  if(isAuthenticated) {
-    return (
-      <div>
-        Slide Screen
-      </div>
-    )
+  if (isAuthenticated) {
+    return <div>Slide Screen</div>;
   }
   return (
     <div>

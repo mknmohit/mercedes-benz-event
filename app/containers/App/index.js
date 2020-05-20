@@ -22,7 +22,6 @@ import reducer from './reducer';
 import saga from './saga';
 
 export function App({ userData, isAuthenticated }) {
-
   useInjectReducer({ key: 'app', reducer });
   useInjectSaga({ key: 'app', saga });
 
@@ -36,6 +35,7 @@ export function App({ userData, isAuthenticated }) {
 
 App.propTypes = {
   userData: PropTypes.object,
+  isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({

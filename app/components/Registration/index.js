@@ -25,7 +25,7 @@ function Registration({ onRegister }) {
   });
 
   const handleRegister = () => {
-    const { name, mobile } = formData
+    const { name, mobile } = formData;
 
     setIsLoading(true);
     setTimeout(() => {
@@ -36,32 +36,27 @@ function Registration({ onRegister }) {
       name,
       mobile,
       email: `${name}${mobile}@dj.com`,
-    }
-    onRegister(params)
+    };
+    onRegister(params);
   };
 
   const handleInputChange = event => {
     const {
-      target: {
-        name,
-        value,
-        checked,
-        type
-      }
-    } = event
+      target: { name, value, checked, type },
+    } = event;
 
-    const updatedValue = type === 'checkbox' ? checked : value
+    const updatedValue = type === 'checkbox' ? checked : value;
     setFormData({
       ...formData,
-      [name]: updatedValue });
+      [name]: updatedValue,
+    });
   };
 
-
   const isEmptyFormData = () => {
-    const { name, mobile, checkbox } = formData
+    const { name, mobile, checkbox } = formData;
 
-    return !(!isEmpty(name) && !isEmpty(mobile) && checkbox)
-  }
+    return !(!isEmpty(name) && !isEmpty(mobile) && checkbox);
+  };
 
   return (
     <Row>

@@ -13,36 +13,30 @@ import {
 } from './constants';
 
 export const signIn = params => {
-  console.log('app action params', params)
+  console.log('app action params', params);
   return {
     type: SIGN_IN,
     params,
   };
-}
+};
 
 export const signInSuccess = payload => {
-  console.log('app payload', payload)
+  console.log('app payload', payload);
   return {
     type: SIGN_IN_SUCCESS,
-    payload
-  }
-}
+    payload,
+  };
+};
 
-export const signInError = () => {
-  return {
-    type: SIGN_IN_ERROR,
-  }
-}
+export const signInError = () => ({
+  type: SIGN_IN_ERROR,
+});
 
-export const registerSuccess = payload => {
-  return {
-    type: REGISTER_SUCCESS,
-    payload
-  }
-}
+export const registerSuccess = payload => ({
+  type: REGISTER_SUCCESS,
+  payload,
+});
 
-export const registerError = () => {
-  return {
-    type: REGISTER_ERROR,
-  }
-}
+export const registerError = () => ({
+  type: REGISTER_ERROR,
+});
