@@ -8,21 +8,50 @@
  */
 
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
-import HomePage from 'containers/HomePage/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import Router from 'router';
+import GlobalStyle from 'theme/globalStyles';
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
+import { makeSelectUserData, makeSelectIsAuth } from './selectors';
+import reducer from './reducer';
+import saga from './saga';
 
-import GlobalStyle from '../../global-styles';
+export function App({ userData, isAuthenticated }) {
+  useInjectReducer({ key: 'app', reducer });
+  useInjectSaga({ key: 'app', saga });
 
-export default function App() {
   return (
     <div>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
+      <Router userData={userData} isAuthenticated={isAuthenticated} />
       <GlobalStyle />
     </div>
   );
 }
+
+App.propTypes = {
+  userData: PropTypes.object,
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = createStructuredSelector({
+  userData: makeSelectUserData(),
+  isAuthenticated: makeSelectIsAuth(),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(withConnect)(App);
