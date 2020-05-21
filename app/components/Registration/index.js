@@ -80,12 +80,6 @@ function Registration({ onRegister }) {
     });
   };
 
-  // const isEmptyFormData = () => {
-  //   const { name, mobile, checkbox } = formData;
-
-  //   return !(!isEmpty(name) && !isEmpty(mobile) && checkbox);
-  // };
-
   return (
     <Row>
       <Col xs={24} lg={16}>
@@ -121,7 +115,6 @@ function Registration({ onRegister }) {
               justify="space-between"
               fontSize={24}
               loading={isLoading}
-              // disabled={isEmptyFormData()}
               onClick={handleRegister}
             >
               <>
