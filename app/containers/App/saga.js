@@ -15,7 +15,7 @@ export function* getSignIn({ params }) {
       userData = cred;
     });
     console.log('getSignIn userData', userData);
-    message.success('Login successfully, welcome back!', 2.5);
+    message.success('Login successfully, welcome back!', 3);
     yield put(signInSuccess(userData));
   } catch (error) {
     console.log('sign in error', error);

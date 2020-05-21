@@ -14,6 +14,7 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import Registration from 'components/Registration';
+import Slides from 'components/Slides';
 import { register } from './actions';
 import makeSelectHomePage from './selectors';
 import reducer from './reducer';
@@ -28,7 +29,7 @@ export function HomePage({ onRegister, userData, isAuthenticated }) {
   };
 
   if (isAuthenticated) {
-    return <div>Slide Screen</div>;
+    return <Slides />
   }
   return (
     <div>
