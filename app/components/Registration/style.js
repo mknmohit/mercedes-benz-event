@@ -4,14 +4,18 @@ import { Checkbox as AntCheckbox, Button } from 'antd';
 const Heading = styled.h2`
   font-size: 42px;
   line-height: 47px;
-  margin-bottom: 50px;
+  margin-bottom: 42px;
+
+  ${props => props.theme.breakpoints.lg} {
+    margin-bottom: 50px;
+  }
 `;
 
 const Container = styled.div`
   padding: 42px 24px;
 
   ${props => props.theme.breakpoints.lg} {
-    padding: 110px 42px;
+    padding: 90px 42px;
   }
 `;
 
@@ -37,7 +41,11 @@ const PolicyBtn = styled(Button)`
 `;
 
 const BtnWrapper = styled.div`
-  margin-top: 80px;
+  margin-top: 52px;
+
+  ${props => props.theme.breakpoints.lg} {
+    margin-top: 80px;
+  }
 `;
 
 export default {
