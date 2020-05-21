@@ -13,6 +13,18 @@ import SlideContent from 'components/SlideContent';
 import Styled from './style';
 
 function Slides() {
+
+  const getSliderSpeed = () => {
+    const width = window.innerWidth
+    || document.documentElement.clientWidth
+    || document.body.clientWidth;
+
+    if (width < 768) {
+      return 200
+    }
+    return 350
+  }
+
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -20,7 +32,7 @@ function Slides() {
     nextArrow: <Styled.NextBtn />,
     slidesToShow: 1,
     slidesToScroll: 1,
-    speed: 800,
+    speed: getSliderSpeed(),
     cssEase: 'linear',
   };
 
