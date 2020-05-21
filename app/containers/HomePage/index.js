@@ -28,7 +28,7 @@ export function HomePage({ onRegister, userData, isAuthenticated }) {
     onRegister(params);
   };
 
-  if (isAuthenticated || true) {
+  if (isAuthenticated) {
     return <Slides />
   }
   return (

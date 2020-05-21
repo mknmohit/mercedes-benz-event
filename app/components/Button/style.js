@@ -6,7 +6,6 @@ const Btn = styled(Button)`
     height: 100%;
     min-height: 60px;
     padding: 12px 24px;
-    background-color: #4cace9;
     display: flex;
     align-items: center;
     justify-content: ${props => props.justify};
@@ -16,6 +15,12 @@ const Btn = styled(Button)`
       props.justify === "space-between" &&
         css`
           min-width: 270px;
+        `}
+
+    ${props =>
+      !props.disabled &&
+        css`
+          background-color: #4cace9;
         `}
   }
 
