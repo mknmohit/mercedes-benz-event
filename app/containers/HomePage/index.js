@@ -29,7 +29,7 @@ export function HomePage({ onRegister, userData, isAuthenticated }) {
   };
 
   if (isAuthenticated) {
-    return <Slides />
+    return <Slides />;
   }
   return (
     <div>

@@ -12,16 +12,16 @@ const Btn = styled(Button)`
     font-size: ${props => props.fontSize}px;
 
     ${props =>
-      props.justify === "space-between" &&
-        css`
-          min-width: 270px;
-        `}
+      props.justify === 'space-between' &&
+      css`
+        min-width: 270px;
+      `}
 
     ${props =>
       !props.disabled &&
-        css`
-          background-color: #4cace9;
-        `}
+      css`
+        background-color: #4cace9;
+      `}
   }
 
   .ant-btn-loading-icon {

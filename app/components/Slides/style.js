@@ -4,7 +4,6 @@ import Slider from 'react-slick';
 import { Button } from 'antd';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 
-
 const commonStyling = `
   background-color: #000;
   color: #FFF4F4;
@@ -58,7 +57,7 @@ const TimeBox = styled.div`
 `;
 
 const Time = styled.span`
-  color: #4CACE9;
+  color: #4cace9;
   padding: 0 5px;
 `;
 
@@ -73,7 +72,7 @@ const EventLive = styled.div`
 
 const Btn = styled(Button)`
   && {
-    color: #FFF4F4;
+    color: #fff4f4;
     font-size: 25px;
     padding: 12px 40px;
     height: 100%;
@@ -86,37 +85,38 @@ const Btn = styled(Button)`
 `;
 
 const Slides = styled(Slider)`
-
   .slick-dots {
     bottom: 0;
     margin-top: 16px;
     position: relative;
 
     li {
-
       button:before {
-        opacity: .3;
+        opacity: 0.3;
         color: #000;
-        font-size: 13px
+        font-size: 13px;
       }
 
       button:hover {
-        opacity: .5;
+        opacity: 0.5;
       }
     }
 
     .slick-active {
-
-      button:before, button:hover {
+      button:before,
+      button:hover {
         opacity: 1;
         color: #000;
       }
     }
   }
 
-  .slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus {
+  .slick-prev:hover,
+  .slick-prev:focus,
+  .slick-next:hover,
+  .slick-next:focus {
     color: #fff;
-    background: rgba(4,4,4,0.6);
+    background: rgba(4, 4, 4, 0.6);
   }
 `;
 

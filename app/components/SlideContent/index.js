@@ -11,18 +11,13 @@ import Slide1Img from 'images/slide-1-car.png';
 import Styled from './style';
 
 function SlideContent() {
-
   return (
     <div>
-      <Styled.SlideImg src={Slide1Img} alt="car"/>
+      <Styled.SlideImg src={Slide1Img} alt="car" />
       <div>
-        <Styled.ModelName>
-          Mercedes-benz C 300
-        </Styled.ModelName>
+        <Styled.ModelName>Mercedes-benz C 300</Styled.ModelName>
         <Styled.PeddleContainer>
-          <Styled.PeddleInfo>
-            Press the peddle to accelerate
-          </Styled.PeddleInfo>
+          <Styled.PeddleInfo>Press the peddle to accelerate</Styled.PeddleInfo>
           <Styled.Peddle>
             <Styled.PeddleImg />
           </Styled.Peddle>
@@ -32,7 +27,6 @@ function SlideContent() {
   );
 }
 
-SlideContent.propTypes = {
-};
+SlideContent.propTypes = {};
 
 export default SlideContent;

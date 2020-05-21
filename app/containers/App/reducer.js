@@ -4,10 +4,7 @@
  *
  */
 import produce from 'immer';
-import {
-  SIGN_IN_SUCCESS,
-  REGISTER_SUCCESS,
-} from './constants';
+import { SIGN_IN_SUCCESS, REGISTER_SUCCESS } from './constants';
 
 export const initialState = {
   userData: null,

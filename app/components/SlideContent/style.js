@@ -12,7 +12,7 @@ const SlideImg = styled.img`
 
 const ModelName = styled.div`
   background-color: #000;
-  color: #FFF4F4;
+  color: #fff4f4;
   display: inline-flex;
   align-items: center;
   font-size: 24px;
@@ -25,7 +25,7 @@ const PeddleContainer = styled.div`
 `;
 
 const PeddleInfo = styled.div`
-  color: #FFF4F4;
+  color: #fff4f4;
   font-size: 24px;
   padding: 16px 66px 16px 46px;
   height: 100%;
