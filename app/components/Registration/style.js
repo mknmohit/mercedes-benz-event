@@ -20,6 +20,7 @@ const RegImg = styled.div`
 `;
 
 const ImgMobile = styled.img`
+  transform: scaleX(-1);
 
   ${props => props.theme.breakpoints.lg} {
     display: none
