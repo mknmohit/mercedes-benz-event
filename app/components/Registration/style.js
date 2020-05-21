@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Checkbox as AntCheckbox } from 'antd';
+import { Checkbox as AntCheckbox, Button } from 'antd';
 
 const Heading = styled.h2`
   font-size: 42px;
@@ -25,12 +25,13 @@ const Checkbox = styled(AntCheckbox)`
   }
 `;
 
-const Anchor = styled.a`
+const PolicyBtn = styled(Button)`
   text-decoration: underline;
   color: #949494;
+  padding-left: 0;
 
-  &:hover,
-  &:focus {
+  &&:hover,
+  &&:focus {
     text-decoration: underline;
   }
 `;
@@ -43,6 +44,6 @@ export default {
   Container,
   Heading,
   Checkbox,
-  Anchor,
+  PolicyBtn,
   BtnWrapper,
 };
