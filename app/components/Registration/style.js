@@ -1,5 +1,30 @@
 import styled from 'styled-components';
-import { Checkbox as AntCheckbox, Button } from 'antd';
+import { Checkbox as AntCheckbox, Button, Col } from 'antd';
+import CarImg from 'images/reg.jpg';
+
+const Column = styled(Col)`
+  ${props => props.theme.breakpoints.lg} {
+    height: 100%;
+    min-height: 100vh;
+  }
+`;
+
+const RegImg = styled.div`
+
+  ${props => props.theme.breakpoints.lg} {
+    background-image: url(${CarImg});
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+`;
+
+const ImgMobile = styled.img`
+
+  ${props => props.theme.breakpoints.lg} {
+    display: none
+  } 
+`;
 
 const Heading = styled.h2`
   font-size: 42px;
@@ -54,4 +79,7 @@ export default {
   Checkbox,
   PolicyBtn,
   BtnWrapper,
+  Column,
+  RegImg,
+  ImgMobile,
 };

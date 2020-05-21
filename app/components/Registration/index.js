@@ -6,7 +6,7 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col, message } from 'antd';
+import { Row, message } from 'antd';
 import { isEmpty, trim } from 'lodash';
 
 import CarImg from 'images/reg.jpg';
@@ -95,10 +95,11 @@ function Registration({ onRegister }) {
 
   return (
     <Row>
-      <Col xs={24} lg={16}>
-        <img src={CarImg} alt="car" />
-      </Col>
-      <Col xs={24} lg={8}>
+      <Styled.Column xs={24} lg={16}>
+        <Styled.ImgMobile src={CarImg} alt="car" />
+        <Styled.RegImg />
+      </Styled.Column>
+      <Styled.Column xs={24} lg={8}>
         <Styled.Container>
           <Styled.Heading>Register Yourself</Styled.Heading>
           <InputField
@@ -138,7 +139,7 @@ function Registration({ onRegister }) {
           </Styled.BtnWrapper>
           <PolicyModal isModalOpen={openPolicy} onClose={togglePolicyModal} onConfirm={handlePolicyCheckbox} />
         </Styled.Container>
-      </Col>
+      </Styled.Column>
     </Row>
   );
 }
