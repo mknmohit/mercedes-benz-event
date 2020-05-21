@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Button } from 'antd';
 
 const Btn = styled(Button)`
@@ -7,11 +7,16 @@ const Btn = styled(Button)`
     min-height: 60px;
     padding: 12px 24px;
     background-color: #4cace9;
-    min-width: 270px;
     display: flex;
     align-items: center;
     justify-content: ${props => props.justify};
     font-size: ${props => props.fontSize}px;
+
+    ${props =>
+      props.justify === "space-between" &&
+        css`
+          min-width: 270px;
+        `}
   }
 
   .ant-btn-loading-icon {

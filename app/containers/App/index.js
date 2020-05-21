@@ -22,6 +22,7 @@ import reducer from './reducer';
 import saga from './saga';
 
 export function App({ userData, isAuthenticated }) {
+
   useInjectReducer({ key: 'app', reducer });
   useInjectSaga({ key: 'app', saga });
 
