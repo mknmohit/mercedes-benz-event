@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Row, Col, message } from 'antd';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -14,15 +14,28 @@ import Styled from './style';
 
 function Slides() {
 
+  const [ animateSlideIndex, setanimateSlideIndex ] = useState(0);
+
   const getSliderSpeed = () => {
     const width = window.innerWidth
     || document.documentElement.clientWidth
     || document.body.clientWidth;
 
     if (width < 768) {
-      return 200
+      return 300
     }
-    return 350
+    return 500
+  }
+
+  const onAfterChange = currentSlide => {
+    console.log('afterchagne', currentSlide)
+    setanimateSlideIndex(currentSlide)
+  }
+
+  const onBeforeChange = (old, newh) => {
+
+    console.log(`beforechange old:${old}, new:${newh}`)
+    setanimateSlideIndex(null)
   }
 
   const sliderSettings = {
@@ -34,6 +47,9 @@ function Slides() {
     slidesToScroll: 1,
     speed: getSliderSpeed(),
     cssEase: 'linear',
+    afterChange: onAfterChange,
+    beforeChange: onBeforeChange,
+
   };
 
   const handleLiveEvent = () => {
@@ -60,9 +76,9 @@ function Slides() {
 
   const renderSlides = () => (
     <Styled.Slides {...sliderSettings}>
-      <SlideContent />
-      <SlideContent />
-      <SlideContent />
+      <SlideContent animate={animateSlideIndex} index={0} />
+      <SlideContent animate={animateSlideIndex} index={1} />
+      <SlideContent animate={animateSlideIndex} index={2} />
     </Styled.Slides>
   );
 
