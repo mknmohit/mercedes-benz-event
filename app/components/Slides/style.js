@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import slidesBg from 'images/slide-bg.png';
 import Slider from 'react-slick';
-import { Button } from 'antd';
+import { Button, Row as antRow } from 'antd';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 
 const commonStyling = `
@@ -31,6 +31,10 @@ const arrowStylingLaptop = `
   height: 52px;
   font-size: 26px;
 `
+
+const Row = styled(antRow)`
+  flex: 1 0 auto;
+`;
 
 const Root = styled.div`
   height: 100%;
@@ -189,6 +193,7 @@ const NextBtn = styled(RightOutlined)`
 `;
 
 export default {
+  Row,
   Root,
   Container,
   EventDetails,

@@ -84,7 +84,7 @@ function Slides() {
   );
 
   return (
-    <Row>
+    <Styled.Row>
       <Col xs={24}>
         <Styled.Root>
           <Styled.Container>
@@ -97,7 +97,7 @@ function Slides() {
           {renderSlides()}
         </Styled.Root>
       </Col>
-    </Row>
+    </Styled.Row>
   );
 }
 
