@@ -15,10 +15,12 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import Registration from 'components/Registration';
 import Slides from 'components/Slides';
+import Footer from 'components/Footer';
 import { register } from './actions';
 import makeSelectHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import Styled from './style';
 
 export function HomePage({ onRegister, userData, isAuthenticated }) {
   useInjectReducer({ key: 'homePage', reducer });
@@ -29,7 +31,12 @@ export function HomePage({ onRegister, userData, isAuthenticated }) {
   };
 
   if (isAuthenticated) {
-    return <Slides />;
+    return (
+      <Styled.Root>
+        <Slides />
+        <Footer />
+      </Styled.Root>
+    )
   }
   return (
     <div>

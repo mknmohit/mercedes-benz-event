@@ -17,6 +17,7 @@ import Router from 'router';
 import GlobalStyle from 'theme/globalStyles';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import Navbar from 'components/Navbar';
 import { makeSelectUserData, makeSelectIsAuth } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -27,6 +28,7 @@ export function App({ userData, isAuthenticated }) {
 
   return (
     <div>
+      <Navbar />
       <Router userData={userData} isAuthenticated={isAuthenticated} />
       <GlobalStyle />
     </div>
