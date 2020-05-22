@@ -32,13 +32,10 @@ function Slides() {
   }
 
   const onAfterChange = currentSlide => {
-    console.log('afterchagne', currentSlide)
     setanimateSlideIndex(currentSlide)
   }
 
-  const onBeforeChange = (old, newh) => {
-
-    console.log(`beforechange old:${old}, new:${newh}`)
+  const onBeforeChange = () => {
     setanimateSlideIndex(null)
   }
 
