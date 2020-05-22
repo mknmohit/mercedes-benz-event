@@ -9,27 +9,38 @@ const commonStyling = `
   color: #FFF4F4;
   display: flex;
   align-items: center;
-  font-size: 24px;
+  font-size: 18px;
 `;
 
 const arrowStyling = `
-  font-size: 30px;
+  top: 22%;
   display: flex !important;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
   color: #fff;
   background: rgba(4, 4, 4, 0.6);
   z-index: 1;
 `;
 
+const arrowStylingLaptop = `
+  top: 30%;
+  width: 56px;
+  height: 56px;
+  font-size: 30px;
+`
+
 const Root = styled.div`
   height: 100%;
-  min-height: 100vh;
   background-image: url(${slidesBg});
   background-repeat: no-repeat;
   background-size: cover;
+
+  ${props => props.theme.breakpoints.lg} {
+    min-height: 100vh;
+  }
 `;
 
 const Container = styled.div`
@@ -39,21 +50,39 @@ const Container = styled.div`
 
 const EventDetails = styled.div`
   padding-top: 50px;
+  margin-bottom: 100px;
+
+  ${props => props.theme.breakpoints.lg} {
+    margin-bottom: 16px;
+  }
 `;
 
 const Heading = styled.h1`
-  font-size: 30px;
+  font-size: 24px;
   margin-bottom: 0;
   line-height: 1;
+
+  ${props => props.theme.breakpoints.lg} {
+    font-size: 30px;
+  }
 `;
 
 const SubHeading = styled.h3`
-  font-size: 18px;
+  font-size: 14px;
+
+  ${props => props.theme.breakpoints.lg} {
+    font-size: 18px;
+  }
 `;
 
 const TimeBox = styled.div`
   ${commonStyling}
-  padding: 10px 36px 10px 20px;
+    padding: 8px 30px 8px 18px;
+
+  ${props => props.theme.breakpoints.lg} {
+    font-size: 24px;
+    padding: 10px 36px 10px 20px;
+  }
 `;
 
 const Time = styled.span`
@@ -67,27 +96,37 @@ const EventLiveContainer = styled.div`
 
 const EventLive = styled.div`
   ${commonStyling}
-  padding: 10px 16px;
+  padding: 8px 16px;
+
+  ${props => props.theme.breakpoints.lg} {
+    font-size: 24px
+    padding: 12px 16px;
+  }
 `;
 
 const Btn = styled(Button)`
   && {
     color: #fff4f4;
-    font-size: 25px;
-    padding: 12px 40px;
+    font-size: 18px;
+    padding: 8px 32px;
     height: 100%;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #4cace9;
+
+    ${props => props.theme.breakpoints.lg} {
+      font-size: 25px;
+      padding: 12px 40px;
+    }
   }
 `;
 
 const Slides = styled(Slider)`
   .slick-dots {
     bottom: 0;
-    margin-top: 16px;
+    margin: 16px auto 24px auto;
     position: relative;
 
     li {
@@ -123,18 +162,24 @@ const Slides = styled(Slider)`
 const PrevBtn = styled(LeftOutlined)`
   && {
     left: 0;
-    top: 30%;
 
     ${arrowStyling}
+
+    ${props => props.theme.breakpoints.lg} {
+      ${arrowStylingLaptop}
+    }
   }
 `;
 
 const NextBtn = styled(RightOutlined)`
   && {
     right: 0;
-    top: 30%;
 
     ${arrowStyling}
+
+    ${props => props.theme.breakpoints.lg} {
+      ${arrowStylingLaptop}
+    }
   }
 `;
 

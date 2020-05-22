@@ -49,16 +49,14 @@ const GlobalStyle = createGlobalStyle`
     color: #949494;
   }
 
-  .ant-message .anticon {
-    && {
-      top: 0;
-    }
-  }
-
   .ant-message-custom-content {
     && {
       display: inline-flex;
       align-items: center;
+
+      .anticon {
+        top: -1px;
+      }
     }
   }
 

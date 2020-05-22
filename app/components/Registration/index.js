@@ -6,17 +6,19 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col } from 'antd';
-import { isEmpty } from 'lodash';
+import { Row, message } from 'antd';
+import { isEmpty, trim } from 'lodash';
 
 import CarImg from 'images/reg.jpg';
 import InputField from 'components/InputField';
 import Button from 'components/Button';
 import { RightOutlined } from '@ant-design/icons';
 
+import PolicyModal from 'components/PolicyModal';
 import Styled from './style';
 
 function Registration({ onRegister }) {
+  const [openPolicy, setOpenPolicy] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -24,20 +26,59 @@ function Registration({ onRegister }) {
     checkbox: false,
   });
 
+  const togglePolicyModal = () => {
+    setOpenPolicy(!openPolicy)
+  }
+
+  const handlePolicyCheckbox = () => {
+    setFormData({
+      ...formData,
+      checkbox: true,
+    });
+  }
+
+  const validation = () => {
+    const { name, mobile, checkbox } = formData;
+
+    const isFiledsEmpty = isEmpty(name) || isEmpty(mobile) || !checkbox
+    const isNameInvalid = name.length < 2
+    const mobileRegix = new RegExp(/^(\+\d{1,3}[- ]?)?\d{10}$/)
+    const isMobileValid = mobileRegix.test(mobile)
+
+    if(isFiledsEmpty) {
+      if(isEmpty(name) || isEmpty(mobile)) {
+        message.error('Please fill all fields', 3)
+      }
+      else {
+        message.error('Please Accept Terms & Conditions', 3)
+      }
+    } 
+    else if (isNameInvalid) {
+      message.error('Invalid Name', 3);
+    }
+    else if (!isMobileValid) {
+      message.error('Invalid Mobile Number', 3)
+    }
+    return !isFiledsEmpty && !isNameInvalid && isMobileValid && checkbox
+  }
+
   const handleRegister = () => {
     const { name, mobile } = formData;
 
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 15000);
+    const isAllFieldsValid = validation();
+    if (isAllFieldsValid) {
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 15000);
 
-    const params = {
-      name,
-      mobile,
-      email: `${name}${mobile}@dj.com`,
-    };
-    onRegister(params);
+      const params = {
+        name,
+        mobile,
+        email: `${name}${mobile}@dj.com`,
+      };
+      onRegister(params);
+    }
   };
 
   const handleInputChange = event => {
@@ -45,25 +86,20 @@ function Registration({ onRegister }) {
       target: { name, value, checked, type },
     } = event;
 
-    const updatedValue = type === 'checkbox' ? checked : value;
+    const updatedValue = type === 'checkbox' ? checked : trim(value);
     setFormData({
       ...formData,
       [name]: updatedValue,
     });
   };
 
-  const isEmptyFormData = () => {
-    const { name, mobile, checkbox } = formData;
-
-    return !(!isEmpty(name) && !isEmpty(mobile) && checkbox);
-  };
-
   return (
     <Row>
-      <Col xs={24} lg={16}>
-        <img src={CarImg} alt="car" />
-      </Col>
-      <Col xs={24} lg={8}>
+      <Styled.Column xs={24} lg={16}>
+        <Styled.ImgMobile src={CarImg} alt="car" />
+        <Styled.RegImg />
+      </Styled.Column>
+      <Styled.Column xs={24} lg={8}>
         <Styled.Container>
           <Styled.Heading>Register Yourself</Styled.Heading>
           <InputField
@@ -86,14 +122,13 @@ function Registration({ onRegister }) {
             onChange={handleInputChange}
           >
             I accept all{' '}
-            <Styled.Anchor href="#">terms &amp; condition</Styled.Anchor>
+            <Styled.PolicyBtn type="link" onClick={togglePolicyModal}>terms &amp; condition</Styled.PolicyBtn>
           </Styled.Checkbox>
           <Styled.BtnWrapper>
             <Button
               justify="space-between"
               fontSize={24}
               loading={isLoading}
-              disabled={isEmptyFormData()}
               onClick={handleRegister}
             >
               <>
@@ -102,8 +137,9 @@ function Registration({ onRegister }) {
               </>
             </Button>
           </Styled.BtnWrapper>
+          <PolicyModal isModalOpen={openPolicy} onClose={togglePolicyModal} onConfirm={handlePolicyCheckbox} />
         </Styled.Container>
-      </Col>
+      </Styled.Column>
     </Row>
   );
 }
