@@ -27,9 +27,9 @@ const arrowStyling = `
 
 const arrowStylingLaptop = `
   top: 30%;
-  width: 56px;
-  height: 56px;
-  font-size: 30px;
+  width: 50px;
+  height: 52px;
+  font-size: 26px;
 `
 
 const Root = styled.div`
@@ -53,7 +53,8 @@ const EventDetails = styled.div`
   margin-bottom: 100px;
 
   ${props => props.theme.breakpoints.lg} {
-    margin-bottom: 16px;
+    padding-top: 40px;
+    margin-bottom: 0;
   }
 `;
 
@@ -63,7 +64,7 @@ const Heading = styled.h1`
   line-height: 1;
 
   ${props => props.theme.breakpoints.lg} {
-    font-size: 30px;
+    font-size: 28px;
   }
 `;
 
@@ -71,7 +72,7 @@ const SubHeading = styled.h3`
   font-size: 14px;
 
   ${props => props.theme.breakpoints.lg} {
-    font-size: 18px;
+    font-size: 16px;
   }
 `;
 
@@ -80,7 +81,7 @@ const TimeBox = styled.div`
     padding: 8px 30px 8px 18px;
 
   ${props => props.theme.breakpoints.lg} {
-    font-size: 24px;
+    font-size: 22px;
     padding: 10px 36px 10px 20px;
   }
 `;
@@ -128,6 +129,10 @@ const Slides = styled(Slider)`
     bottom: 0;
     margin: 16px auto 24px auto;
     position: relative;
+
+    ${props => props.theme.breakpoints.lg} {
+      margin-top: 0;
+    }
 
     li {
       button:before {

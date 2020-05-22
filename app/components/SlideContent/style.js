@@ -6,7 +6,7 @@ const SlideImg = styled.img`
   margin: 10px auto 80px;
 
   ${props => props.theme.breakpoints.md} {
-    width: calc(100% - 350px);
+    width: calc(100% - 550px);
     margin-bottom: 0;
   }
 `;
@@ -20,14 +20,18 @@ const ModelName = styled.div`
   padding: 8px 18px;
 
   ${props => props.theme.breakpoints.lg} {
-    font-size: 24px;
-    padding: 12px 46px;
+    font-size: 22px;
+    padding: 10px 46px;
   }
 `;
 
 const PeddleContainer = styled.div`
   display: flex;
   padding-bottom: 46px;
+
+  ${props => props.theme.breakpoints.lg} {
+    padding-bottom: 40px;
+  }
 `;
 
 const PeddleInfo = styled.div`
@@ -46,8 +50,8 @@ const PeddleInfo = styled.div`
   }
 
   ${props => props.theme.breakpoints.lg} {
-    font-size: 24px;
-    padding: 16px 66px 16px 46px;
+    font-size: 22px;
+    padding: 14px 66px 14px 46px;
   }
 `;
 
@@ -80,7 +84,7 @@ const PeddleImg = styled.div`
     max-width: 90px;
     height: 130px;
     background-size: 100%;
-    left: 0;
+    left: 18px;
   }
 `;
 
