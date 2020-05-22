@@ -32,13 +32,10 @@ function Slides() {
   }
 
   const onAfterChange = currentSlide => {
-    console.log('afterchagne', currentSlide)
     setanimateSlideIndex(currentSlide)
   }
 
-  const onBeforeChange = (old, newh) => {
-
-    console.log(`beforechange old:${old}, new:${newh}`)
+  const onBeforeChange = () => {
     setanimateSlideIndex(null)
   }
 
@@ -87,7 +84,7 @@ function Slides() {
   );
 
   return (
-    <Row>
+    <Styled.Row>
       <Col xs={24}>
         <Styled.Root>
           <Styled.Container>
@@ -100,7 +97,7 @@ function Slides() {
           {renderSlides()}
         </Styled.Root>
       </Col>
-    </Row>
+    </Styled.Row>
   );
 }
 
