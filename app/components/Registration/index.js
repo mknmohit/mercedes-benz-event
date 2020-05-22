@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Row, message } from 'antd';
 import { isEmpty, trim } from 'lodash';
@@ -25,6 +25,10 @@ function Registration({ onRegister }) {
     mobile: '',
     checkbox: false,
   });
+
+  useEffect(() => {
+    document.body.style.backgroundColor = "#fff";
+  }, []);
 
   const togglePolicyModal = () => {
     setOpenPolicy(!openPolicy)

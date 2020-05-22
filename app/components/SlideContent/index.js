@@ -6,15 +6,16 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Animated } from "react-animated-css";
 
 import Slide1Img from 'images/slide-1-car.png';
 import Styled from './style';
 
-function SlideContent() {
+function SlideContent({ animate, index }) {
   return (
     <div>
       <Styled.SlideImg src={Slide1Img} alt="car" />
-      <div>
+      <Animated animationIn="fadeInLeft" animationInDuration={400} isVisible={animate === index}>
         <Styled.ModelName>Mercedes-benz C 300</Styled.ModelName>
         <Styled.PeddleContainer>
           <Styled.PeddleInfo>Press the peddle to accelerate</Styled.PeddleInfo>
@@ -22,11 +23,14 @@ function SlideContent() {
             <Styled.PeddleImg />
           </Styled.Peddle>
         </Styled.PeddleContainer>
-      </div>
+      </Animated>
     </div>
   );
 }
 
-SlideContent.propTypes = {};
+SlideContent.propTypes = {
+  animate: PropTypes.number,
+  index: PropTypes.number
+};
 
 export default SlideContent;
