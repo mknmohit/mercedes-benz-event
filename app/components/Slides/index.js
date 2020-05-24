@@ -8,8 +8,10 @@ import React, { useState, useEffect } from 'react';
 import { Row, Col, message } from 'antd';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { map } from 'lodash';
 
 import SlideContent from 'components/SlideContent';
+import { slidesData } from './data';
 import Styled from './style';
 
 function Slides() {
@@ -75,13 +77,26 @@ function Slides() {
     );
   };
 
-  const renderSlides = () => (
-    <Styled.Slides {...sliderSettings}>
-      <SlideContent animate={animateSlideIndex} index={0} />
-      <SlideContent animate={animateSlideIndex} index={1} />
-      <SlideContent animate={animateSlideIndex} index={2} />
-    </Styled.Slides>
-  );
+  const renderSlides = () => map(slidesData, (slide, index) => {
+    const {
+      id,
+      name,
+      image,
+      audio,
+      audioInfo,
+    } = slide
+    return (
+      <SlideContent
+        key={id}
+        animate={animateSlideIndex}
+        index={index}
+        name={name}
+        image={image}
+        audio={audio}
+        audioInfo={audioInfo}
+      />
+    )
+  });
 
   return (
     <Styled.Row>
@@ -94,7 +109,9 @@ function Slides() {
               {renderEventBox()}
             </Styled.EventDetails>
           </Styled.Container>
-          {renderSlides()}
+          <Styled.Slides {...sliderSettings}>
+            {renderSlides()}
+          </Styled.Slides>
         </Styled.Root>
       </Col>
     </Styled.Row>
