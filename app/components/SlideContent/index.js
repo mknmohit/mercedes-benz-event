@@ -4,49 +4,50 @@
  *
  */
 
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Animated } from "react-animated-css";
-import { isNil } from 'lodash';
+import { Animated } from 'react-animated-css';
 
 import Styled from './style';
 
-function SlideContent({
-  animate,
-  index,
-  name,
-  image,
-  audio,
-  audioInfo,
-}) {
-
+function SlideContent({ animate, index, name, image, audio, audioInfo }) {
   useEffect(() => {
     if (animate === index) {
-      stopAudio()
+      stopAudio();
     }
-  }, [animate])
+  }, [animate]);
 
-  const engineSound = new Audio(audio)
+  const engineSound = new Audio(audio);
 
   const playAudio = e => {
-    e.preventDefault()
+    e.preventDefault();
     engineSound.play();
     engineSound.loop = true;
-  }
+  };
 
   const stopAudio = () => {
-    engineSound.pause()
+    engineSound.pause();
     engineSound.currentTime = 0;
-  }
+  };
 
   return (
     <div>
       <Styled.SlideImg src={image} alt="car" />
-      <Animated animationIn="fadeInLeft" animationInDuration={400} isVisible={animate === index}>
+      <Animated
+        animationIn="fadeInLeft"
+        animationInDuration={400}
+        isVisible={animate === index}
+      >
         <Styled.ModelName>{name}</Styled.ModelName>
         <Styled.PeddleContainer>
           <Styled.PeddleInfo>{audioInfo}</Styled.PeddleInfo>
-          <Styled.Peddle onMouseDown={playAudio} onMouseUp={stopAudio} onMouseOut={stopAudio} onTouchStart={playAudio} onTouchEnd={stopAudio}>
+          <Styled.Peddle
+            onMouseDown={playAudio}
+            onMouseUp={stopAudio}
+            onBlur={stopAudio}
+            onTouchStart={playAudio}
+            onTouchEnd={stopAudio}
+          >
             <Styled.PeddleImg />
           </Styled.Peddle>
         </Styled.PeddleContainer>

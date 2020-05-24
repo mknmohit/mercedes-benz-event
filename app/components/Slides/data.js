@@ -6,21 +6,21 @@ import Engine63ESound from 'audios/63-E-Engine.mp3';
 export const slidesData = [
   {
     id: 'slide-1',
-    name: 'Mercedes-benz 43 C',
+    name: 'Mercedes-Benz C 43',
     image: Slide1Img,
     audio: Engine43CSound,
     audioInfo: 'Press the peddle to accelerate',
   },
   {
     id: 'slide-2',
-    name: 'Mercedes-benz 45 A',
+    name: 'Mercedes-Benz A 45',
     image: Slide1Img,
     audio: Engine45ASound,
     audioInfo: 'Press the peddle to accelerate',
   },
   {
     id: 'slide-3',
-    name: 'Mercedes-benz 63 E',
+    name: 'Mercedes-Benz E 63',
     image: Slide1Img,
     audio: Engine63ESound,
     audioInfo: 'Press the peddle to accelerate',

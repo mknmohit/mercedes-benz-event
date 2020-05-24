@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Footer = styled.footer`
   flex-shrink: 0;
-  background-color: #CDCDCD;
+  background-color: #cdcdcd;
   min-height: 35px;
   padding: 12px 30px;
   display: flex;
