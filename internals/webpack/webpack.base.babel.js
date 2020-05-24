@@ -105,6 +105,10 @@ module.exports = options => ({
           },
         },
       },
+      {
+        test: /\.(ogg|mp3|wav|mpe?g)$/i,
+        use: 'file-loader',
+      },
     ],
   },
   plugins: options.plugins.concat([
