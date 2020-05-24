@@ -46,8 +46,7 @@ function Registration({ onRegister }) {
 
     const isFiledsEmpty = isEmpty(name) || isEmpty(mobile) || !checkbox;
     const isNameInvalid = name.length < 2;
-    const mobileRegix = new RegExp(/^(\+\d{1,3}[- ]?)?\d{10}$/);
-    const isMobileValid = mobileRegix.test(mobile);
+    const isMobileValid = mobile.length === 10;
 
     if (isFiledsEmpty) {
       if (isEmpty(name) || isEmpty(mobile)) {
@@ -115,6 +114,7 @@ function Registration({ onRegister }) {
             name="mobile"
             placeholder="Enter mobile no."
             value={formData.mobile}
+            maxLength="10"
             onChange={handleInputChange}
           />
           <Styled.Checkbox

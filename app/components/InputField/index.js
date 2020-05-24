@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from './style';
 
-function InputField({ type, placeholder, value, onChange, name }) {
+function InputField({ type, placeholder, value, onChange, name, maxLength }) {
   return (
     <Styled.Root>
       <Styled.Field
@@ -17,6 +17,7 @@ function InputField({ type, placeholder, value, onChange, name }) {
         name={name}
         value={value}
         onChange={onChange}
+        maxLength={maxLength}
         allowClear
       />
     </Styled.Root>
