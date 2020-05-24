@@ -36,7 +36,7 @@ export function HomePage({ onRegister, userData, isAuthenticated }) {
         <Slides />
         <Footer />
       </Styled.Root>
-    )
+    );
   }
   return (
     <div>
