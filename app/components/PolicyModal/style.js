@@ -41,7 +41,7 @@ const CloseIcon = styled(CloseOutlined)`
   color: #fff;
   width: 46px;
   height: 46px;
-  background-color: #4CACE9;
+  background-color: #4cace9;
   display: flex;
   justify-content: center;
   align-items: center;

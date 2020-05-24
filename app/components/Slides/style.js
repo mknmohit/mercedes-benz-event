@@ -30,7 +30,7 @@ const arrowStylingLaptop = `
   width: 50px;
   height: 52px;
   font-size: 26px;
-`
+`;
 
 const Row = styled(antRow)`
   flex: 1 0 auto;
@@ -82,7 +82,7 @@ const SubHeading = styled.h3`
 
 const TimeBox = styled.div`
   ${commonStyling}
-    padding: 8px 30px 8px 18px;
+  padding: 8px 30px 8px 18px;
 
   ${props => props.theme.breakpoints.lg} {
     font-size: 22px;

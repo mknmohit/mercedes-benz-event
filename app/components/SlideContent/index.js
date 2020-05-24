@@ -4,36 +4,50 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Animated } from "react-animated-css";
+import { Animated } from 'react-animated-css';
 
-import Slide1Img from 'images/slide-1-car.png';
-import Engine43cSound from 'audios/43-C-Engine.mp3';
 import Styled from './style';
 
-function SlideContent({ animate, index }) {
+function SlideContent({ animate, index, name, image, audio, audioInfo }) {
+  useEffect(() => {
+    if (animate === index) {
+      stopAudio();
+    }
+  }, [animate]);
 
-  const engineSound = new Audio(Engine43cSound)
+  const engineSound = new Audio(audio);
 
-  const playAudio = () => {
+  const playAudio = e => {
+    e.preventDefault();
     engineSound.play();
     engineSound.loop = true;
-  }
+  };
 
   const stopAudio = () => {
-    engineSound.pause()
+    engineSound.pause();
     engineSound.currentTime = 0;
-  }
+  };
 
   return (
     <div>
-      <Styled.SlideImg src={Slide1Img} alt="car" />
-      <Animated animationIn="fadeInLeft" animationInDuration={400} isVisible={animate === index}>
-        <Styled.ModelName>Mercedes-benz C 300</Styled.ModelName>
+      <Styled.SlideImg src={image} alt="car" />
+      <Animated
+        animationIn="fadeInLeft"
+        animationInDuration={400}
+        isVisible={animate === index}
+      >
+        <Styled.ModelName>{name}</Styled.ModelName>
         <Styled.PeddleContainer>
-          <Styled.PeddleInfo>Press the peddle to accelerate</Styled.PeddleInfo>
-          <Styled.Peddle onMouseDown={playAudio} onMouseUp={stopAudio}>
+          <Styled.PeddleInfo>{audioInfo}</Styled.PeddleInfo>
+          <Styled.Peddle
+            onMouseDown={playAudio}
+            onMouseUp={stopAudio}
+            onBlur={stopAudio}
+            onTouchStart={playAudio}
+            onTouchEnd={stopAudio}
+          >
             <Styled.PeddleImg />
           </Styled.Peddle>
         </Styled.PeddleContainer>
@@ -44,7 +58,11 @@ function SlideContent({ animate, index }) {
 
 SlideContent.propTypes = {
   animate: PropTypes.number,
-  index: PropTypes.number
+  index: PropTypes.number,
+  name: PropTypes.string,
+  image: PropTypes.string,
+  audio: PropTypes.string,
+  audioInfo: PropTypes.string,
 };
 
 export default SlideContent;
