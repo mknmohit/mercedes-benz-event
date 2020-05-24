@@ -27,44 +27,41 @@ function Registration({ onRegister }) {
   });
 
   useEffect(() => {
-    document.body.style.backgroundColor = "#fff";
+    document.body.style.backgroundColor = '#fff';
   }, []);
 
   const togglePolicyModal = () => {
-    setOpenPolicy(!openPolicy)
-  }
+    setOpenPolicy(!openPolicy);
+  };
 
   const handlePolicyCheckbox = () => {
     setFormData({
       ...formData,
       checkbox: true,
     });
-  }
+  };
 
   const validation = () => {
     const { name, mobile, checkbox } = formData;
 
-    const isFiledsEmpty = isEmpty(name) || isEmpty(mobile) || !checkbox
-    const isNameInvalid = name.length < 2
-    const mobileRegix = new RegExp(/^(\+\d{1,3}[- ]?)?\d{10}$/)
-    const isMobileValid = mobileRegix.test(mobile)
+    const isFiledsEmpty = isEmpty(name) || isEmpty(mobile) || !checkbox;
+    const isNameInvalid = name.length < 2;
+    const mobileRegix = new RegExp(/^(\+\d{1,3}[- ]?)?\d{10}$/);
+    const isMobileValid = mobileRegix.test(mobile);
 
-    if(isFiledsEmpty) {
-      if(isEmpty(name) || isEmpty(mobile)) {
-        message.error('Please fill all fields', 3)
+    if (isFiledsEmpty) {
+      if (isEmpty(name) || isEmpty(mobile)) {
+        message.error('Please fill all fields', 3);
+      } else {
+        message.error('Please Accept Terms & Conditions', 3);
       }
-      else {
-        message.error('Please Accept Terms & Conditions', 3)
-      }
-    } 
-    else if (isNameInvalid) {
+    } else if (isNameInvalid) {
       message.error('Invalid Name', 3);
+    } else if (!isMobileValid) {
+      message.error('Invalid Mobile Number', 3);
     }
-    else if (!isMobileValid) {
-      message.error('Invalid Mobile Number', 3)
-    }
-    return !isFiledsEmpty && !isNameInvalid && isMobileValid && checkbox
-  }
+    return !isFiledsEmpty && !isNameInvalid && isMobileValid && checkbox;
+  };
 
   const handleRegister = () => {
     const { name, mobile } = formData;
@@ -126,7 +123,9 @@ function Registration({ onRegister }) {
             onChange={handleInputChange}
           >
             I accept all{' '}
-            <Styled.PolicyBtn type="link" onClick={togglePolicyModal}>terms &amp; condition</Styled.PolicyBtn>
+            <Styled.PolicyBtn type="link" onClick={togglePolicyModal}>
+              terms &amp; condition
+            </Styled.PolicyBtn>
           </Styled.Checkbox>
           <Styled.BtnWrapper>
             <Button
@@ -141,7 +140,11 @@ function Registration({ onRegister }) {
               </>
             </Button>
           </Styled.BtnWrapper>
-          <PolicyModal isModalOpen={openPolicy} onClose={togglePolicyModal} onConfirm={handlePolicyCheckbox} />
+          <PolicyModal
+            isModalOpen={openPolicy}
+            onClose={togglePolicyModal}
+            onConfirm={handlePolicyCheckbox}
+          />
         </Styled.Container>
       </Styled.Column>
     </Row>

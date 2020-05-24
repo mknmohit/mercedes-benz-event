@@ -10,7 +10,6 @@ const Column = styled(Col)`
 `;
 
 const RegImg = styled.div`
-
   ${props => props.theme.breakpoints.lg} {
     background-image: url(${CarImg});
     background-repeat: no-repeat;
@@ -23,8 +22,8 @@ const ImgMobile = styled.img`
   transform: scaleX(-1);
 
   ${props => props.theme.breakpoints.lg} {
-    display: none
-  } 
+    display: none;
+  }
 `;
 
 const Heading = styled.h2`
