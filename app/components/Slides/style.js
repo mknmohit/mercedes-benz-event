@@ -57,7 +57,7 @@ const EventDetails = styled.div`
   margin-bottom: 100px;
 
   ${props => props.theme.breakpoints.lg} {
-    padding-top: 40px;
+    padding-top: 80px;
     margin-bottom: 0;
   }
 `;

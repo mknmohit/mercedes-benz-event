@@ -13,6 +13,9 @@ import {
   CHECK_AUTH,
   AUTH_SUCCESS,
   AUTH_ERROR,
+  LOGOUT,
+  LOGOUT_SUCCESS,
+  LOGOUT_ERROR,
 } from './constants';
 
 export const signIn = params => {
@@ -44,12 +47,9 @@ export const registerError = () => ({
   type: REGISTER_ERROR,
 });
 
-export const checkAuth = () => {
-  console.log('auth', CHECK_AUTH)
-  return {
-    type: CHECK_AUTH,
-  };
-}
+export const checkAuth = () => ({
+  type: CHECK_AUTH,
+})
 
 export const authSuccess = payload => ({
   type: AUTH_SUCCESS,
@@ -58,4 +58,16 @@ export const authSuccess = payload => ({
 
 export const authError = () => ({
   type: AUTH_ERROR,
+});
+
+export const logout = () => ({
+    type: LOGOUT,
+})
+
+export const logoutSuccess = () => ({
+  type: LOGOUT_SUCCESS,
+});
+
+export const logoutError = () => ({
+  type: LOGOUT_ERROR,
 });

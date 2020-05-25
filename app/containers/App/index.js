@@ -20,18 +20,18 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import Navbar from 'components/Navbar';
 import { makeSelectUserData, makeSelectIsAuth } from './selectors';
-import { checkAuth } from './actions';
+import { checkAuth, logout } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import Styled from './style';
  
 
-export function App({ userData, isAuthenticated, onCheckAuth }) {
+export function App({ userData, isAuthenticated, onCheckAuth, onLogout }) {
   useInjectReducer({ key: 'app', reducer });
   useInjectSaga({ key: 'app', saga });
 
   useEffect(() => {
-    if(!isAuthenticated) {
+    if (isNil(isAuthenticated)) {
       onCheckAuth()
     }
   }, [])
@@ -46,7 +46,7 @@ export function App({ userData, isAuthenticated, onCheckAuth }) {
 
   return (
     <div>
-      <Navbar />
+      <Navbar isAuthenticated={isAuthenticated} onLogout={onLogout} />
       <Router userData={userData} isAuthenticated={isAuthenticated} />
       <GlobalStyle />
     </div>
@@ -57,6 +57,7 @@ App.propTypes = {
   userData: PropTypes.object,
   isAuthenticated: PropTypes.bool,
   onCheckAuth: PropTypes.func,
+  onLogout: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -68,6 +69,9 @@ function mapDispatchToProps(dispatch) {
   return {
     onCheckAuth: () => {
       dispatch(checkAuth())
+    },
+    onLogout: () => {
+      dispatch(logout())
     },
   };
 }

@@ -3,8 +3,8 @@ import { message } from 'antd';
 import { isEmpty } from 'lodash';
 
 import { authRef } from 'config/firebase';
-import { signInSuccess, signInError, authSuccess, authError } from './actions';
-import { SIGN_IN, CHECK_AUTH } from './constants';
+import { signInSuccess, signInError, authSuccess, authError, logoutSuccess } from './actions';
+import { SIGN_IN, CHECK_AUTH, LOGOUT } from './constants';
 
 export function* getSignIn({ params }) {
   const { email, mobile } = params;
@@ -31,7 +31,7 @@ export function* getAuth() {
         if (user) {
           resolve(user);
         } else {
-          reject(message.error('login first'));
+          reject();
         }
       });
     });
@@ -47,6 +47,16 @@ export function* getAuth() {
   }
 }
 
+export function* getLogout() {
+  try {
+    yield call([authRef, authRef.signOut])
+    yield put(logoutSuccess())
+  }
+  catch (error) {
+    message.error('Something went wrong, try again')
+  }
+}
+
 /**
  * Root saga manages watcher lifecycle
  */
@@ -57,4 +67,5 @@ export default function* appSaga() {
   // It will be cancelled automatically on component unmount
   yield takeLatest(SIGN_IN, getSignIn);
   yield takeLatest(CHECK_AUTH, getAuth);
+  yield takeLatest(LOGOUT, getLogout);
 }
