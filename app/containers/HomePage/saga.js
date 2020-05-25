@@ -32,14 +32,14 @@ export function* postRegister({ params }) {
         const { user } = cred;
         // update user profile
         user.updateProfile({
-          displayName: name
+          displayName: name,
+          phoneNumber: mobile
        })
         // Adding data to another collection
         dbRef.collection('registration').add({
           name,
           mobile,
           type: 'normal',
-          link: "",
           uid: cred.user.uid,
         });
 
