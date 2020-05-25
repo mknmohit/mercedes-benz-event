@@ -66,6 +66,7 @@ function Slides({ liveLink }) {
           <Styled.EventLive>Your Event is now Live</Styled.EventLive>
           <Styled.Btn onClick={handleLiveEvent}>
             <span>Enter</span>
+            <Styled.LiveIcon />
           </Styled.Btn>
         </Styled.EventLiveContainer>
       );

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import slidesBg from 'images/slide-bg.png';
 import Slider from 'react-slick';
 import { Button, Row as antRow } from 'antd';
@@ -30,6 +30,29 @@ const arrowStylingLaptop = `
   width: 50px;
   height: 52px;
   font-size: 26px;
+`;
+
+const shineAnimation = keyframes`
+  10% {
+    opacity: 1;
+    top: -30%;
+    left: -30%;
+    transition-property: left, top, opacity;
+    transition-duration: 0.7s, 0.7s, 0.15s;
+    transition-timing-function: ease;
+  }
+  100% {
+    opacity: 0;
+    top: -30%;
+    left: -30%;
+    transition-property: left, top, opacity;
+  }
+`;
+
+const blinkAnimation = keyframes`
+  50% {
+    opacity: 0;
+  }
 `;
 
 const Row = styled(antRow)`
@@ -111,6 +134,8 @@ const EventLive = styled.div`
 
 const Btn = styled(Button)`
   && {
+    position: relative;
+    overflow: hidden;
     color: #fff4f4;
     font-size: 18px;
     padding: 8px 32px;
@@ -125,7 +150,43 @@ const Btn = styled(Button)`
       font-size: 22px;
       padding: 12px 40px;
     }
+
+    &:after {
+      animation: ${shineAnimation} 5s ease-in-out  infinite;
+      animation-fill-mode: forwards;  
+      content: "";
+      position: absolute;
+      top: -110%;
+      left: -210%;
+      width: 200%;
+      height: 200%;
+      opacity: 0;
+      transform: rotate(20deg);
+
+      background: linear-gradient(
+        to right, 
+        rgba(255, 255, 255, 0.13) 0%,
+        rgba(255, 255, 255, 0.13) 77%,
+        rgba(255, 255, 255, 0.5) 92%,
+        rgba(255, 255, 255, 0.0) 100%
+      );
+    }
+
+    &:active:after {
+      opacity: 0;
+    }    
   }
+`;
+
+const LiveIcon = styled.div`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #e74040;
+  position: absolute;
+  top: 10px;
+  right: 9px;
+  animation: ${blinkAnimation} 3s step-start 0s infinite;
 `;
 
 const Slides = styled(Slider)`
@@ -204,6 +265,7 @@ export default {
   EventLiveContainer,
   EventLive,
   Btn,
+  LiveIcon,
   Slides,
   PrevBtn,
   NextBtn,
