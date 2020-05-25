@@ -30,12 +30,16 @@ export function* postRegister({ params }) {
       // If new user (after successfully registration)
       if (cred) {
         const { user } = cred;
-
+        // update user profile
+        user.updateProfile({
+          displayName: name
+       })
         // Adding data to another collection
         dbRef.collection('registration').add({
           name,
           mobile,
           type: 'normal',
+          link: "",
           uid: cred.user.uid,
         });
 
