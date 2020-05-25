@@ -104,7 +104,7 @@ const EventLive = styled.div`
   padding: 8px 16px;
 
   ${props => props.theme.breakpoints.lg} {
-    font-size: 24px
+    font-size: 22px;
     padding: 12px 16px;
   }
 `;
@@ -122,7 +122,7 @@ const Btn = styled(Button)`
     background-color: #4cace9;
 
     ${props => props.theme.breakpoints.lg} {
-      font-size: 25px;
+      font-size: 22px;
       padding: 12px 40px;
     }
   }

@@ -5,16 +5,17 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Col, message } from 'antd';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { map } from 'lodash';
+import { isEmpty, map } from 'lodash';
 
 import SlideContent from 'components/SlideContent';
 import { slidesData } from './data';
 import Styled from './style';
 
-function Slides() {
+function Slides({ liveLink }) {
   const [animateSlideIndex, setanimateSlideIndex] = useState(0);
 
   useEffect(() => {
@@ -59,20 +60,20 @@ function Slides() {
   };
 
   const renderEventBox = () => {
-    if (true) {
+    if (!isEmpty(liveLink)) {
       return (
-        <Styled.TimeBox>
-          Event starts in <Styled.Time>09:10</Styled.Time>min
-        </Styled.TimeBox>
+        <Styled.EventLiveContainer>
+          <Styled.EventLive>Your Event is now Live</Styled.EventLive>
+          <Styled.Btn onClick={handleLiveEvent}>
+            <span>Enter</span>
+          </Styled.Btn>
+        </Styled.EventLiveContainer>
       );
     }
     return (
-      <Styled.EventLiveContainer>
-        <Styled.EventLive>Your Event is now Live</Styled.EventLive>
-        <Styled.Btn onClick={handleLiveEvent}>
-          <span>Enter</span>
-        </Styled.Btn>
-      </Styled.EventLiveContainer>
+      <Styled.TimeBox>
+        Event starts in <Styled.Time>09:10</Styled.Time>min
+      </Styled.TimeBox>
     );
   };
 
@@ -109,5 +110,10 @@ function Slides() {
     </Styled.Row>
   );
 }
+
+
+Slides.propTypes = {
+  liveLink: PropTypes.string,
+};
 
 export default Slides;

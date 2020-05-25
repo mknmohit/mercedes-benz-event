@@ -1,11 +1,14 @@
 // import { take, call, put, select } from 'redux-saga/effects';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, take, select } from 'redux-saga/effects';
+import { eventChannel } from 'redux-saga'
 import { isEmpty } from 'lodash';
 import { message } from 'antd';
 
 import { authRef, dbRef } from 'config/firebase';
 import { signIn, registerSuccess, registerError } from 'containers/App/actions';
-import { REGISTER } from './constants';
+import { REGISTER, LIVE_LINK } from './constants';
+import { makeSelectUserData } from 'containers/App/selectors';
+import { liveLinkSuccess, liveLinkError } from './actions';
 
 export function* postRegister({ params }) {
   const { name, email, mobile } = params;
@@ -29,18 +32,19 @@ export function* postRegister({ params }) {
     .then(cred => {
       // If new user (after successfully registration)
       if (cred) {
-        const { user } = cred;
+        const { user, user: { uid } } = cred;
         // update user profile
         user.updateProfile({
           displayName: name,
           phoneNumber: mobile
        })
         // Adding data to another collection
-        dbRef.collection('registration').add({
+        dbRef.collection('registration').doc(uid).set({
           name,
           mobile,
           type: 'normal',
-          uid: cred.user.uid,
+          link: '',
+          uid,
         });
 
         userData = user;
@@ -57,6 +61,32 @@ export function* postRegister({ params }) {
   }
 }
 
+export function* listenLiveLink() {
+  const userData = yield select(makeSelectUserData())
+  const ref = dbRef.collection("registration").doc(userData.uid)
+
+  const channel = eventChannel(emit => {
+    ref.onSnapshot(doc => {
+      const user = doc.data();
+      const { type, link } = user
+
+      if (type === 'premium') {
+        emit(link);
+      }
+    });
+    return () => ref;
+  });
+
+  try {
+    while (true) {
+      const link = yield take(channel)
+      yield put(liveLinkSuccess(link))
+    }
+  } catch (err) {
+    yield put(liveLinkError())
+  }
+}
+
 /**
  * Root saga manages watcher lifecycle
  */
@@ -66,4 +96,6 @@ export default function* homePageSaga() {
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
   yield takeLatest(REGISTER, postRegister);
+  yield takeLatest(LIVE_LINK, listenLiveLink);
+
 }
