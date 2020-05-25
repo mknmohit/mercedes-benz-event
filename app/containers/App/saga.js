@@ -7,19 +7,18 @@ import { SIGN_IN } from './constants';
 
 export function* getSignIn({ params }) {
   const { email, mobile } = params;
-  let userData;
+
   try {
-    yield authRef.signInWithEmailAndPassword(email, mobile).then(cred => {
-      // Show User data
-      console.log('alreay reg', cred);
-      userData = cred;
-    });
-    console.log('getSignIn userData', userData);
+    const response = yield authRef.signInWithEmailAndPassword(email, mobile)
     message.success('Login successfully, welcome back!', 3);
-    yield put(signInSuccess(userData));
-  } catch (error) {
-    console.log('sign in error', error);
-    yield put(signInError(userData));
+
+    const { user } = response
+    yield put(signInSuccess(user));
+  }
+
+  catch (error) {
+    message.error('Error While Signing In, Try Again', 4);
+    yield put(signInError(error));
   }
 }
 
