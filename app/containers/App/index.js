@@ -7,7 +7,7 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -19,12 +19,20 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import Navbar from 'components/Navbar';
 import { makeSelectUserData, makeSelectIsAuth } from './selectors';
+import { checkAuth } from './actions';
 import reducer from './reducer';
 import saga from './saga';
+ 
 
-export function App({ userData, isAuthenticated }) {
+export function App({ userData, isAuthenticated, onCheckAuth }) {
   useInjectReducer({ key: 'app', reducer });
   useInjectSaga({ key: 'app', saga });
+
+  useEffect(() => {
+    if(!isAuthenticated) {
+      onCheckAuth()
+    }
+  }, [])
 
   return (
     <div>
@@ -38,6 +46,7 @@ export function App({ userData, isAuthenticated }) {
 App.propTypes = {
   userData: PropTypes.object,
   isAuthenticated: PropTypes.bool,
+  onCheckAuth: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -47,7 +56,9 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    onCheckAuth: () => {
+      dispatch(checkAuth())
+    },
   };
 }
 
