@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { isNil } from 'lodash';
 
 import Router from 'router';
 import GlobalStyle from 'theme/globalStyles';
@@ -22,6 +23,7 @@ import { makeSelectUserData, makeSelectIsAuth } from './selectors';
 import { checkAuth } from './actions';
 import reducer from './reducer';
 import saga from './saga';
+import Styled from './style';
  
 
 export function App({ userData, isAuthenticated, onCheckAuth }) {
@@ -33,6 +35,14 @@ export function App({ userData, isAuthenticated, onCheckAuth }) {
       onCheckAuth()
     }
   }, [])
+
+  if (isNil(isAuthenticated)) {
+    return (
+      <Styled.Root>
+        <Styled.Loader />
+      </Styled.Root>
+    )
+  }
 
   return (
     <div>
