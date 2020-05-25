@@ -46,7 +46,7 @@ export function App({ userData, isAuthenticated, onCheckAuth, onLogout }) {
 
   return (
     <div>
-      <Navbar isAuthenticated={isAuthenticated} onLogout={onLogout} />
+      <Navbar isAuthenticated={isAuthenticated} onLogout={onLogout} userData={userData}/>
       <Router userData={userData} isAuthenticated={isAuthenticated} />
       <GlobalStyle />
     </div>

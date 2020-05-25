@@ -6,13 +6,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Menu, Dropdown } from 'antd';
+import { Menu, Dropdown, Tooltip  } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { startCase } from 'lodash';
 
 import Logo from 'images/logo.png';
 import Styled from './style';
 
-function Navbar({ isAuthenticated, onLogout }) {
+function Navbar({ isAuthenticated, onLogout, userData }) {
 
   const getMenu = () => (
     <Menu>
@@ -24,9 +25,14 @@ function Navbar({ isAuthenticated, onLogout }) {
 
   const renderAvatar = () => {
     if(isAuthenticated) {
+      const { displayName } = userData
+
+      console.log('displayName', displayName)
       return (
         <Dropdown overlay={getMenu} trigger={['click']}>
-          <Styled.User icon={<UserOutlined />}>Mohit</Styled.User>
+          <Tooltip title={startCase(displayName)} placement="left">
+            <Styled.User icon={<UserOutlined />} />
+          </Tooltip>
         </Dropdown>
       )
     }
@@ -45,6 +51,7 @@ function Navbar({ isAuthenticated, onLogout }) {
 Navbar.propTypes = {
   isAuthenticated: PropTypes.bool,
   onLogout: PropTypes.func,
+  userData: PropTypes.object,
 };
 
 export default Navbar;
