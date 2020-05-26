@@ -6,9 +6,9 @@ import { message } from 'antd';
 
 import { authRef, dbRef } from 'config/firebase';
 import { signIn, registerSuccess, registerError } from 'containers/App/actions';
-import { REGISTER, LIVE_LINK } from './constants';
+import { REGISTER, LIVE_LINK, LISTEN_ADMIN_DATA  } from './constants';
 import { makeSelectUserData } from 'containers/App/selectors';
-import { liveLinkSuccess, liveLinkError } from './actions';
+import { liveLinkSuccess, liveLinkError, listenAdminDataSuccess, listenAdminDataError } from './actions';
 
 export function* postRegister({ params }) {
   const { name, email, mobile } = params;
@@ -87,6 +87,27 @@ export function* listenLiveLink() {
   }
 }
 
+export function* listenAdminDB() {
+  const ref = dbRef.collection('admin').doc('forAllUser')
+
+  const channel = eventChannel(emit => {
+    ref.onSnapshot(doc => {
+        emit(doc.data());
+    });
+    return () => ref;
+  });
+
+  try {
+    while (true) {
+      const data = yield take(channel)
+      console.log('data', data)
+      yield put(listenAdminDataSuccess(data))
+    }
+  } catch (err) {
+    yield put(listenAdminDataError())
+  }
+}
+
 /**
  * Root saga manages watcher lifecycle
  */
@@ -97,5 +118,5 @@ export default function* homePageSaga() {
   // It will be cancelled automatically on component unmount
   yield takeLatest(REGISTER, postRegister);
   yield takeLatest(LIVE_LINK, listenLiveLink);
-
+  yield takeLatest(LISTEN_ADMIN_DATA, listenAdminDB);
 }
