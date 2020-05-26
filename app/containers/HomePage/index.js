@@ -16,21 +16,29 @@ import { useInjectReducer } from 'utils/injectReducer';
 import Registration from 'components/Registration';
 import Slides from 'components/Slides';
 import Footer from 'components/Footer';
-import { register, liveLink } from './actions';
+import { register, liveLink, listenAdminData } from './actions';
 import makeSelectHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import Styled from './style';
 
-export function HomePage({ onRegister, userData, isAuthenticated, onListenLiveLink, homePageStore }) {
+export function HomePage({
+  onRegister,
+  userData,
+  isAuthenticated,
+  onListenLiveLink,
+  onListenAdminData,
+  homePageStore,
+}) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
 
   useEffect(() => {
-    if(isAuthenticated) {
-      onListenLiveLink()
+    if (isAuthenticated) {
+      onListenLiveLink();
+      onListenAdminData();
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
 
   const handleRegistration = params => {
     onRegister(params);
@@ -39,7 +47,10 @@ export function HomePage({ onRegister, userData, isAuthenticated, onListenLiveLi
   if (isAuthenticated) {
     return (
       <Styled.Root>
-        <Slides liveLink={homePageStore.liveLink}/>
+        <Slides
+          liveLink={homePageStore.liveLink}
+          adminData={homePageStore.adminData}
+        />
         <Footer />
       </Styled.Root>
     );
@@ -54,6 +65,7 @@ export function HomePage({ onRegister, userData, isAuthenticated, onListenLiveLi
 HomePage.propTypes = {
   onRegister: PropTypes.func,
   onListenLiveLink: PropTypes.func,
+  onListenAdminData: PropTypes.func,
   userData: PropTypes.object,
   isAuthenticated: PropTypes.bool,
   homePageStore: PropTypes.object,
@@ -67,6 +79,7 @@ function mapDispatchToProps(dispatch) {
   return {
     onRegister: params => dispatch(register(params)),
     onListenLiveLink: () => dispatch(liveLink()),
+    onListenAdminData: () => dispatch(listenAdminData()),
   };
 }
 

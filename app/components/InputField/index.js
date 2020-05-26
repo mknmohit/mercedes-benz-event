@@ -30,6 +30,7 @@ InputField.propTypes = {
   name: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func,
+  maxLength: PropTypes.string,
 };
 
 export default InputField;

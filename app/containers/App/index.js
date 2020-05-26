@@ -24,7 +24,6 @@ import { checkAuth, logout } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import Styled from './style';
- 
 
 export function App({ userData, isAuthenticated, onCheckAuth, onLogout }) {
   useInjectReducer({ key: 'app', reducer });
@@ -32,21 +31,25 @@ export function App({ userData, isAuthenticated, onCheckAuth, onLogout }) {
 
   useEffect(() => {
     if (isNil(isAuthenticated)) {
-      onCheckAuth()
+      onCheckAuth();
     }
-  }, [])
+  }, []);
 
   if (isNil(isAuthenticated)) {
     return (
       <Styled.Root>
         <Styled.Loader />
       </Styled.Root>
-    )
+    );
   }
 
   return (
     <div>
-      <Navbar isAuthenticated={isAuthenticated} onLogout={onLogout} userData={userData}/>
+      <Navbar
+        isAuthenticated={isAuthenticated}
+        onLogout={onLogout}
+        userData={userData}
+      />
       <Router userData={userData} isAuthenticated={isAuthenticated} />
       <GlobalStyle />
     </div>
@@ -68,10 +71,10 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onCheckAuth: () => {
-      dispatch(checkAuth())
+      dispatch(checkAuth());
     },
     onLogout: () => {
-      dispatch(logout())
+      dispatch(logout());
     },
   };
 }
