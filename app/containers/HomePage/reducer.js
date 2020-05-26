@@ -5,13 +5,13 @@
  */
 import produce from 'immer';
 import {
-  LIVE_LINK_SUCCESS,
-  LIVE_LINK_ERROR,
+  TALK_LINK_SUCCESS,
+  TALK_LINK_ERROR,
   LISTEN_ADMIN_DATA_SUCCESS,
 } from './constants';
 
 export const initialState = {
-  liveLink: null,
+  talkLink: null,
   adminData: {},
 };
 
@@ -19,12 +19,12 @@ export const initialState = {
 const homePageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case LIVE_LINK_SUCCESS:
-        draft.liveLink = action.payload;
+      case TALK_LINK_SUCCESS:
+        draft.talkLink = action.payload;
         break;
 
-      case LIVE_LINK_ERROR:
-        draft.liveLink = '';
+      case TALK_LINK_ERROR:
+        draft.talkLink = '';
         break;
 
       case LISTEN_ADMIN_DATA_SUCCESS:

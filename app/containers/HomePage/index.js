@@ -16,7 +16,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import Registration from 'components/Registration';
 import Slides from 'components/Slides';
 import Footer from 'components/Footer';
-import { register, liveLink, listenAdminData } from './actions';
+import { register, talkLink, listenAdminData } from './actions';
 import makeSelectHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -26,7 +26,7 @@ export function HomePage({
   onRegister,
   userData,
   isAuthenticated,
-  onListenLiveLink,
+  onListenTalkLink,
   onListenAdminData,
   homePageStore,
 }) {
@@ -35,7 +35,7 @@ export function HomePage({
 
   useEffect(() => {
     if (isAuthenticated) {
-      onListenLiveLink();
+      onListenTalkLink();
       onListenAdminData();
     }
   }, [isAuthenticated]);
@@ -48,7 +48,6 @@ export function HomePage({
     return (
       <Styled.Root>
         <Slides
-          liveLink={homePageStore.liveLink}
           adminData={homePageStore.adminData}
         />
         <Footer />
@@ -64,7 +63,7 @@ export function HomePage({
 
 HomePage.propTypes = {
   onRegister: PropTypes.func,
-  onListenLiveLink: PropTypes.func,
+  onListenTalkLink: PropTypes.func,
   onListenAdminData: PropTypes.func,
   userData: PropTypes.object,
   isAuthenticated: PropTypes.bool,
@@ -78,7 +77,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onRegister: params => dispatch(register(params)),
-    onListenLiveLink: () => dispatch(liveLink()),
+    onListenTalkLink: () => dispatch(talkLink()),
     onListenAdminData: () => dispatch(listenAdminData()),
   };
 }

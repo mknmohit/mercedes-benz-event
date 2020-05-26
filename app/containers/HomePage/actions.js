@@ -5,9 +5,9 @@
  */
 import {
   REGISTER,
-  LIVE_LINK,
-  LIVE_LINK_SUCCESS,
-  LIVE_LINK_ERROR,
+  TALK_LINK,
+  TALK_LINK_SUCCESS,
+  TALK_LINK_ERROR,
   LISTEN_ADMIN_DATA,
   LISTEN_ADMIN_DATA_SUCCESS,
   LISTEN_ADMIN_DATA_ERROR,
@@ -18,17 +18,17 @@ export const register = params => ({
   params,
 });
 
-export const liveLink = () => ({
-  type: LIVE_LINK,
+export const talkLink = () => ({
+  type: TALK_LINK,
 });
 
-export const liveLinkSuccess = payload => ({
-  type: LIVE_LINK_SUCCESS,
+export const talkLinkSuccess = payload => ({
+  type: TALK_LINK_SUCCESS,
   payload,
 });
 
-export const liveLinkError = () => ({
-  type: LIVE_LINK_ERROR,
+export const talkLinkError = () => ({
+  type: TALK_LINK_ERROR,
 });
 
 export const listenAdminData = () => ({

@@ -16,7 +16,7 @@ import SlideContent from 'components/SlideContent';
 import { slidesData } from './data';
 import Styled from './style';
 
-function Slides({ liveLink, adminData }) {
+function Slides({ adminData }) {
   const [animateSlideIndex, setanimateSlideIndex] = useState(0);
   const [isContdownOver, setIsCountdownOver] = useState(false);
 
@@ -81,8 +81,8 @@ function Slides({ liveLink, adminData }) {
   };
 
   const renderEventBox = () => {
-    const { isEventStart } = adminData;
-    if (!isEmpty(liveLink)) {
+    const { isEventStart, liveLink, isEventFinished  } = adminData;
+    if (!isEmpty(liveLink) && isEventStart) {
       return (
         <Styled.EventLiveContainer>
           <Styled.EventLive>Your Event is now Live</Styled.EventLive>
@@ -99,6 +99,14 @@ function Slides({ liveLink, adminData }) {
           Event starts in <Styled.Time>{getCountdown()}</Styled.Time>
         </Styled.TimeBox>
       );
+    }
+
+    if (isEventFinished) {
+      return (
+        <Styled.TimeBox>
+          Event is already finished
+        </Styled.TimeBox>
+      )
     }
 
     return <Styled.TimeBox>Event will start soon</Styled.TimeBox>;
@@ -139,7 +147,6 @@ function Slides({ liveLink, adminData }) {
 }
 
 Slides.propTypes = {
-  liveLink: PropTypes.string,
   adminData: PropTypes.object,
 };
 

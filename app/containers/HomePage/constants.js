@@ -6,9 +6,9 @@
 
 export const REGISTER = 'app/HomePage/REGISTER';
 
-export const LIVE_LINK = 'app/HomePage/LIVE_LINK';
-export const LIVE_LINK_SUCCESS = 'app/HomePage/LIVE_LINK_SUCCESS';
-export const LIVE_LINK_ERROR = 'app/HomePage/LIVE_LINK_ERROR';
+export const TALK_LINK = 'app/HomePage/TALK_LINK';
+export const TALK_LINK_SUCCESS = 'app/HomePage/TALK_LINK_SUCCESS';
+export const TALK_LINK_ERROR = 'app/HomePage/TALK_LINK_ERROR';
 
 export const LISTEN_ADMIN_DATA = 'app/HomePage/LISTEN_ADMIN_DATA';
 export const LISTEN_ADMIN_DATA_SUCCESS =
