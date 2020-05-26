@@ -18,21 +18,15 @@ import {
   LOGOUT_ERROR,
 } from './constants';
 
-export const signIn = params => {
-  console.log('app action params', params);
-  return {
-    type: SIGN_IN,
-    params,
-  };
-};
+export const signIn = params => ({
+  type: SIGN_IN,
+  params,
+});
 
-export const signInSuccess = payload => {
-  console.log('signIn success payload', payload);
-  return {
-    type: SIGN_IN_SUCCESS,
-    payload,
-  };
-};
+export const signInSuccess = payload => ({
+  type: SIGN_IN_SUCCESS,
+  payload,
+});
 
 export const signInError = () => ({
   type: SIGN_IN_ERROR,
@@ -49,7 +43,7 @@ export const registerError = () => ({
 
 export const checkAuth = () => ({
   type: CHECK_AUTH,
-})
+});
 
 export const authSuccess = payload => ({
   type: AUTH_SUCCESS,
@@ -61,8 +55,8 @@ export const authError = () => ({
 });
 
 export const logout = () => ({
-    type: LOGOUT,
-})
+  type: LOGOUT,
+});
 
 export const logoutSuccess = () => ({
   type: LOGOUT_SUCCESS,

@@ -20,7 +20,6 @@ function Slides({ liveLink, adminData }) {
   const [animateSlideIndex, setanimateSlideIndex] = useState(0);
   const [isContdownOver, setIsCountdownOver] = useState(false);
 
-
   useEffect(() => {
     document.body.style.backgroundColor = '#edebeb';
   }, []);
@@ -62,17 +61,27 @@ function Slides({ liveLink, adminData }) {
     message.info('Live Event is comming soon!', 2);
   };
 
-  const onCountdownOver = () => setIsCountdownOver(true)
-  
+  const onCountdownOver = () => setIsCountdownOver(true);
+
   const getCountdown = () => {
     if (!isEmpty(adminData)) {
-      const { startTime } = adminData
-      return <DateCountdown dateTo={startTime} mostSignificantFigure="hour" numberOfFigures={3} locales={[':',':',':',':',':','']} locales_plural={[':',':',':',':',':','']} callback={onCountdownOver} />
+      const { startTime } = adminData;
+      return (
+        <DateCountdown
+          dateTo={startTime}
+          mostSignificantFigure="hour"
+          numberOfFigures={3}
+          locales={[':', ':', ':', ':', ':', '']}
+          locales_plural={[':', ':', ':', ':', ':', '']}
+          callback={onCountdownOver}
+        />
+      );
     }
-  }
+    return null;
+  };
 
   const renderEventBox = () => {
-    const { isEventStart } = adminData
+    const { isEventStart } = adminData;
     if (!isEmpty(liveLink)) {
       return (
         <Styled.EventLiveContainer>
@@ -84,20 +93,15 @@ function Slides({ liveLink, adminData }) {
         </Styled.EventLiveContainer>
       );
     }
-    else if(isEventStart && !isContdownOver) {
+    if (isEventStart && !isContdownOver) {
       return (
         <Styled.TimeBox>
           Event starts in <Styled.Time>{getCountdown()}</Styled.Time>
         </Styled.TimeBox>
       );
     }
-    else {
-      return (
-        <Styled.TimeBox>
-          Event will start soon
-        </Styled.TimeBox>
-      );
-    }
+
+    return <Styled.TimeBox>Event will start soon</Styled.TimeBox>;
   };
 
   const renderSlides = () =>
@@ -133,7 +137,6 @@ function Slides({ liveLink, adminData }) {
     </Styled.Row>
   );
 }
-
 
 Slides.propTypes = {
   liveLink: PropTypes.string,

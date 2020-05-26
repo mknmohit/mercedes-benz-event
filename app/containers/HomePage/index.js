@@ -22,16 +22,23 @@ import reducer from './reducer';
 import saga from './saga';
 import Styled from './style';
 
-export function HomePage({ onRegister, userData, isAuthenticated, onListenLiveLink, onListenAdminData, homePageStore }) {
+export function HomePage({
+  onRegister,
+  userData,
+  isAuthenticated,
+  onListenLiveLink,
+  onListenAdminData,
+  homePageStore,
+}) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
 
   useEffect(() => {
-    if(isAuthenticated) {
-      onListenLiveLink()
-      onListenAdminData()
+    if (isAuthenticated) {
+      onListenLiveLink();
+      onListenAdminData();
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
 
   const handleRegistration = params => {
     onRegister(params);
@@ -40,7 +47,10 @@ export function HomePage({ onRegister, userData, isAuthenticated, onListenLiveLi
   if (isAuthenticated) {
     return (
       <Styled.Root>
-        <Slides liveLink={homePageStore.liveLink} adminData={homePageStore.adminData}/>
+        <Slides
+          liveLink={homePageStore.liveLink}
+          adminData={homePageStore.adminData}
+        />
         <Footer />
       </Styled.Root>
     );

@@ -152,9 +152,9 @@ const Btn = styled(Button)`
     }
 
     &:after {
-      animation: ${shineAnimation} 5s ease-in-out  infinite;
-      animation-fill-mode: forwards;  
-      content: "";
+      animation: ${shineAnimation} 5s ease-in-out infinite;
+      animation-fill-mode: forwards;
+      content: '';
       position: absolute;
       top: -110%;
       left: -210%;
@@ -164,17 +164,17 @@ const Btn = styled(Button)`
       transform: rotate(20deg);
 
       background: linear-gradient(
-        to right, 
+        to right,
         rgba(255, 255, 255, 0.13) 0%,
         rgba(255, 255, 255, 0.13) 77%,
         rgba(255, 255, 255, 0.5) 92%,
-        rgba(255, 255, 255, 0.0) 100%
+        rgba(255, 255, 255, 0) 100%
       );
     }
 
     &:active:after {
       opacity: 0;
-    }    
+    }
   }
 `;
 

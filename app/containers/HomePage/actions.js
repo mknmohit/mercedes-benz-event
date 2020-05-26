@@ -3,7 +3,15 @@
  * HomePage actions
  *
  */
-import { REGISTER, LIVE_LINK, LIVE_LINK_SUCCESS, LIVE_LINK_ERROR, LISTEN_ADMIN_DATA, LISTEN_ADMIN_DATA_SUCCESS, LISTEN_ADMIN_DATA_ERROR } from './constants';
+import {
+  REGISTER,
+  LIVE_LINK,
+  LIVE_LINK_SUCCESS,
+  LIVE_LINK_ERROR,
+  LISTEN_ADMIN_DATA,
+  LISTEN_ADMIN_DATA_SUCCESS,
+  LISTEN_ADMIN_DATA_ERROR,
+} from './constants';
 
 export const register = params => ({
   type: REGISTER,
@@ -20,8 +28,8 @@ export const liveLinkSuccess = payload => ({
 });
 
 export const liveLinkError = () => ({
-  type: LIVE_LINK_ERROR
-})
+  type: LIVE_LINK_ERROR,
+});
 
 export const listenAdminData = () => ({
   type: LISTEN_ADMIN_DATA,
@@ -34,4 +42,4 @@ export const listenAdminDataSuccess = payload => ({
 
 export const listenAdminDataError = () => ({
   type: LISTEN_ADMIN_DATA_ERROR,
-})
+});
