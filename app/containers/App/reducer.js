@@ -4,7 +4,15 @@
  *
  */
 import produce from 'immer';
-import { SIGN_IN_SUCCESS, SIGN_IN_ERROR, REGISTER_SUCCESS, REGISTER_ERROR, AUTH_SUCCESS, AUTH_ERROR, LOGOUT_SUCCESS } from './constants';
+import {
+  SIGN_IN_SUCCESS,
+  SIGN_IN_ERROR,
+  REGISTER_SUCCESS,
+  REGISTER_ERROR,
+  AUTH_SUCCESS,
+  AUTH_ERROR,
+  LOGOUT_SUCCESS,
+} from './constants';
 
 export const initialState = {
   userData: null,

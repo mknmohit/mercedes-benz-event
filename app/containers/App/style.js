@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { LoadingOutlined } from '@ant-design/icons';
 
-
 const Root = styled.div`
   height: 100vh;
   display: flex;
@@ -11,10 +10,10 @@ const Root = styled.div`
 
 const Loader = styled(LoadingOutlined)`
   font-size: 34px;
-  color: #4CACE9;
+  color: #4cace9;
 `;
 
 export default {
   Root,
-  Loader
+  Loader,
 };
