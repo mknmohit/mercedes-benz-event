@@ -14,12 +14,14 @@ const Nav = styled.div`
     height: 0;
   }
 
-  ${props => props.isAuthenticated && css`
-    padding: 0 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  `}
+  ${props =>
+    props.isAuthenticated &&
+    css`
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    `}
 `;
 
 const Logo = styled.img`
@@ -35,7 +37,6 @@ const Logo = styled.img`
 `;
 
 const User = styled(Avatar)`
-
   ${props => props.theme.breakpoints.lg} {
     &&& {
       position: absolute;

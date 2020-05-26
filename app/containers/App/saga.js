@@ -1,33 +1,35 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 import { message } from 'antd';
-import { isEmpty } from 'lodash';
 
 import { authRef } from 'config/firebase';
-import { signInSuccess, signInError, authSuccess, authError, logoutSuccess } from './actions';
+import {
+  signInSuccess,
+  signInError,
+  authSuccess,
+  authError,
+  logoutSuccess,
+} from './actions';
 import { SIGN_IN, CHECK_AUTH, LOGOUT } from './constants';
 
 export function* getSignIn({ params }) {
   const { email, mobile } = params;
 
   try {
-    const response = yield authRef.signInWithEmailAndPassword(email, mobile)
+    const response = yield authRef.signInWithEmailAndPassword(email, mobile);
     message.success('Login successfully, welcome back!', 3);
 
-    const { user } = response
+    const { user } = response;
     yield put(signInSuccess(user));
-  }
-
-  catch (error) {
+  } catch (error) {
     message.error('Error While Signing In, Try Again', 4);
     yield put(signInError(error));
   }
 }
 
 export function* getAuth() {
-
-  const onAuthStateChanged = () => {
-    return new Promise((resolve, reject) => {
-      authRef.onAuthStateChanged((user) => {
+  const onAuthStateChanged = () =>
+    new Promise((resolve, reject) => {
+      authRef.onAuthStateChanged(user => {
         if (user) {
           resolve(user);
         } else {
@@ -35,25 +37,21 @@ export function* getAuth() {
         }
       });
     });
-  }
 
   try {
     const user = yield call(onAuthStateChanged);
-    yield put(authSuccess(user))
-  }
-
-  catch (error) {
-    yield put(authError())
+    yield put(authSuccess(user));
+  } catch (error) {
+    yield put(authError());
   }
 }
 
 export function* getLogout() {
   try {
-    yield call([authRef, authRef.signOut])
-    yield put(logoutSuccess())
-  }
-  catch (error) {
-    message.error('Something went wrong, try again')
+    yield call([authRef, authRef.signOut]);
+    yield put(logoutSuccess());
+  } catch (error) {
+    message.error('Something went wrong, try again');
   }
 }
 
