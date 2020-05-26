@@ -16,7 +16,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import Registration from 'components/Registration';
 import Slides from 'components/Slides';
 import Footer from 'components/Footer';
-import { register, talkLink, listenAdminData } from './actions';
+import { register, talkLink, listenAdminData, enterLiveEvent } from './actions';
 import makeSelectHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -28,6 +28,7 @@ export function HomePage({
   isAuthenticated,
   onListenTalkLink,
   onListenAdminData,
+  onEnterLiveEvent,
   homePageStore,
 }) {
   useInjectReducer({ key: 'homePage', reducer });
@@ -44,11 +45,18 @@ export function HomePage({
     onRegister(params);
   };
 
+  const handleEnterLiveEvent = () => {
+    onEnterLiveEvent(true)
+  }
+
+  console.log('homePageStore', homePageStore)
+
   if (isAuthenticated) {
     return (
       <Styled.Root>
         <Slides
           adminData={homePageStore.adminData}
+          onEnterLiveEvent={handleEnterLiveEvent}
         />
         <Footer />
       </Styled.Root>
@@ -64,6 +72,7 @@ export function HomePage({
 HomePage.propTypes = {
   onRegister: PropTypes.func,
   onListenTalkLink: PropTypes.func,
+  onEnterLiveEvent: PropTypes.func,
   onListenAdminData: PropTypes.func,
   userData: PropTypes.object,
   isAuthenticated: PropTypes.bool,
@@ -79,6 +88,7 @@ function mapDispatchToProps(dispatch) {
     onRegister: params => dispatch(register(params)),
     onListenTalkLink: () => dispatch(talkLink()),
     onListenAdminData: () => dispatch(listenAdminData()),
+    onEnterLiveEvent: params => dispatch(enterLiveEvent(params)),
   };
 }
 

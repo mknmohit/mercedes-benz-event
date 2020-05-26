@@ -14,3 +14,5 @@ export const LISTEN_ADMIN_DATA = 'app/HomePage/LISTEN_ADMIN_DATA';
 export const LISTEN_ADMIN_DATA_SUCCESS =
   'app/HomePage/LISTEN_ADMIN_DATA_SUCCESS';
 export const LISTEN_ADMIN_DATA_ERROR = 'app/HomePage/LISTEN_ADMIN_DATA_ERROR';
+
+export const ENTER_LIVE_EVENT = 'app/HomePage/ENTER_LIVE_EVENT';

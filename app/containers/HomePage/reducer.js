@@ -8,10 +8,12 @@ import {
   TALK_LINK_SUCCESS,
   TALK_LINK_ERROR,
   LISTEN_ADMIN_DATA_SUCCESS,
+  ENTER_LIVE_EVENT,
 } from './constants';
 
 export const initialState = {
   talkLink: null,
+  isUserEnterLiveEvent: false,
   adminData: {},
 };
 
@@ -29,6 +31,10 @@ const homePageReducer = (state = initialState, action) =>
 
       case LISTEN_ADMIN_DATA_SUCCESS:
         draft.adminData = action.payload;
+        break;
+
+      case ENTER_LIVE_EVENT:
+        draft.isUserEnterLiveEvent = action.params
         break;
     }
   });

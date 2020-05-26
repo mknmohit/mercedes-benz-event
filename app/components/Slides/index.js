@@ -6,7 +6,7 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Col, message } from 'antd';
+import { Col } from 'antd';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { isEmpty, map } from 'lodash';
@@ -16,7 +16,7 @@ import SlideContent from 'components/SlideContent';
 import { slidesData } from './data';
 import Styled from './style';
 
-function Slides({ adminData }) {
+function Slides({ adminData, onEnterLiveEvent }) {
   const [animateSlideIndex, setanimateSlideIndex] = useState(0);
   const [isContdownOver, setIsCountdownOver] = useState(false);
 
@@ -57,10 +57,6 @@ function Slides({ adminData }) {
     beforeChange: onBeforeChange,
   };
 
-  const handleLiveEvent = () => {
-    message.info('Live Event is comming soon!', 2);
-  };
-
   const onCountdownOver = () => setIsCountdownOver(true);
 
   const getCountdown = () => {
@@ -86,7 +82,7 @@ function Slides({ adminData }) {
       return (
         <Styled.EventLiveContainer>
           <Styled.EventLive>Your Event is now Live</Styled.EventLive>
-          <Styled.Btn onClick={handleLiveEvent}>
+          <Styled.Btn onClick={onEnterLiveEvent}>
             <span>Enter</span>
             <Styled.LiveIcon />
           </Styled.Btn>
@@ -148,6 +144,7 @@ function Slides({ adminData }) {
 
 Slides.propTypes = {
   adminData: PropTypes.object,
+  onEnterLiveEvent: PropTypes.func,
 };
 
 export default Slides;

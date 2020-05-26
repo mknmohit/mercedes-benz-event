@@ -11,6 +11,7 @@ import {
   LISTEN_ADMIN_DATA,
   LISTEN_ADMIN_DATA_SUCCESS,
   LISTEN_ADMIN_DATA_ERROR,
+  ENTER_LIVE_EVENT,
 } from './constants';
 
 export const register = params => ({
@@ -42,4 +43,9 @@ export const listenAdminDataSuccess = payload => ({
 
 export const listenAdminDataError = () => ({
   type: LISTEN_ADMIN_DATA_ERROR,
+});
+
+export const enterLiveEvent = params => ({
+  type: ENTER_LIVE_EVENT,
+  params
 });
