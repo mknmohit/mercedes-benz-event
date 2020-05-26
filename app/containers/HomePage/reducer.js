@@ -13,7 +13,7 @@ import {
 
 export const initialState = {
   talkLink: null,
-  isUserEnterLiveEvent: false,
+  isUserEnterEvent: true,
   adminData: {},
 };
 
@@ -34,7 +34,7 @@ const homePageReducer = (state = initialState, action) =>
         break;
 
       case ENTER_LIVE_EVENT:
-        draft.isUserEnterLiveEvent = action.params
+        draft.isUserEnterEvent = action.params
         break;
     }
   });

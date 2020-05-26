@@ -15,6 +15,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import Registration from 'components/Registration';
 import Slides from 'components/Slides';
+import LiveEvent from 'components/LiveEvent';
 import Footer from 'components/Footer';
 import { register, talkLink, listenAdminData, enterLiveEvent } from './actions';
 import makeSelectHomePage from './selectors';
@@ -52,10 +53,16 @@ export function HomePage({
   console.log('homePageStore', homePageStore)
 
   if (isAuthenticated) {
+    const { adminData, isUserEnterEvent } = homePageStore
+
+    if (isUserEnterEvent) {
+      return <LiveEvent adminData={adminData} />
+    }
+
     return (
       <Styled.Root>
         <Slides
-          adminData={homePageStore.adminData}
+          adminData={adminData}
           onEnterLiveEvent={handleEnterLiveEvent}
         />
         <Footer />
