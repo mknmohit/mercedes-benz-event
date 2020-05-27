@@ -6,7 +6,7 @@ import HomePage from 'containers/HomePage';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 /* eslint-disable react/jsx-no-bind */
-function Router({ userData, isAuthenticated }) {
+function Router({ isAuthenticated }) {
   /* routeProps are passed by react-router-dom, routeProps includes {match: {…}, location: {…}, history: {…}, staticContext: undefined} */
   return (
     <Switch>
@@ -16,7 +16,6 @@ function Router({ userData, isAuthenticated }) {
         render={routeProps => (
           <HomePage
             {...routeProps}
-            userData={userData}
             isAuthenticated={isAuthenticated}
           />
         )}
@@ -27,7 +26,6 @@ function Router({ userData, isAuthenticated }) {
 }
 
 Router.propTypes = {
-  userData: PropTypes.object,
   isAuthenticated: PropTypes.bool,
 };
 
