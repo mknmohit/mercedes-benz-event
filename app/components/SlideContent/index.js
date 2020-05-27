@@ -4,31 +4,18 @@
  *
  */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Animated } from 'react-animated-css';
 
 import Styled from './style';
 
-function SlideContent({ animate, index, name, image, audio, audioInfo }) {
-  useEffect(() => {
-    if (animate === index) {
-      stopAudio();
-    }
-  }, [animate]);
+function SlideContent({ animate, index, name, image, audioInfo, onPlayAudio, onStopAudio }) {
 
-  const engineSound = new Audio(audio);
-
-  const playAudio = e => {
+  const handlePlayAudio = e => {
     e.preventDefault();
-    engineSound.play();
-    engineSound.loop = true;
-  };
-
-  const stopAudio = () => {
-    engineSound.pause();
-    engineSound.currentTime = 0;
-  };
+    onPlayAudio()
+  }
 
   return (
     <div>
@@ -42,11 +29,11 @@ function SlideContent({ animate, index, name, image, audio, audioInfo }) {
         <Styled.PeddleContainer>
           <Styled.PeddleInfo>{audioInfo}</Styled.PeddleInfo>
           <Styled.Peddle
-            onMouseDown={playAudio}
-            onMouseUp={stopAudio}
-            onBlur={stopAudio}
-            onTouchStart={playAudio}
-            onTouchEnd={stopAudio}
+            onMouseDown={handlePlayAudio}
+            onMouseUp={onStopAudio}
+            onBlur={onStopAudio}
+            onTouchStart={handlePlayAudio}
+            onTouchEnd={onStopAudio}
           >
             <Styled.PeddleImg />
           </Styled.Peddle>
@@ -61,8 +48,9 @@ SlideContent.propTypes = {
   index: PropTypes.number,
   name: PropTypes.string,
   image: PropTypes.string,
-  audio: PropTypes.string,
   audioInfo: PropTypes.string,
+  onPlayAudio: PropTypes.func,
+  onStopAudio: PropTypes.func,
 };
 
 export default SlideContent;
