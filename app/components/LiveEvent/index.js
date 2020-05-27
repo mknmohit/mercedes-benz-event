@@ -39,7 +39,6 @@ function LiveEvent({ adminData, talkLink }) {
   };
 
   const renderTalkBtn = () => {
-
     if (!isNull(talkLink)) {
       if (!isEmpty(talkLink)) {
         return (

@@ -50,7 +50,7 @@ export function App({ userData, isAuthenticated, onCheckAuth, onLogout }) {
         onLogout={onLogout}
         userData={userData}
       />
-      <Router userData={userData} isAuthenticated={isAuthenticated} />
+      <Router isAuthenticated={isAuthenticated} />
       <GlobalStyle />
     </div>
   );

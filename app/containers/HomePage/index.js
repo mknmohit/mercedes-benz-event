@@ -27,7 +27,6 @@ import Styled from './style';
 
 export function HomePage({
   onRegister,
-  userData,
   isAuthenticated,
   onListenTalkLink,
   onListenAdminData,
@@ -47,10 +46,10 @@ export function HomePage({
   const prevIsEventStart = usePrevious(homePageStore.adminData.isEventStart);
 
   useEffect(() => {
-    if(prevIsEventStart && homePageStore.adminData.isEventStart === false) {
-      onEnterLiveEvent(false)
+    if (prevIsEventStart && homePageStore.adminData.isEventStart === false) {
+      onEnterLiveEvent(false);
     }
-  }, [homePageStore.adminData.isEventStart])
+  }, [homePageStore.adminData.isEventStart]);
 
   const handleRegistration = params => {
     onRegister(params);
@@ -64,7 +63,7 @@ export function HomePage({
     const { adminData, isUserEnterEvent, talkLink: meetLink } = homePageStore;
 
     if (isUserEnterEvent && !isEmpty(adminData)) {
-      const { isEventStart, liveLink } = adminData
+      const { isEventStart, liveLink } = adminData;
 
       if (isEventStart && !isEmpty(liveLink)) {
         return (
@@ -96,7 +95,6 @@ HomePage.propTypes = {
   onListenTalkLink: PropTypes.func,
   onEnterLiveEvent: PropTypes.func,
   onListenAdminData: PropTypes.func,
-  userData: PropTypes.object,
   isAuthenticated: PropTypes.bool,
   homePageStore: PropTypes.object,
 };
