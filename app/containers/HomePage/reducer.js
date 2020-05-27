@@ -34,7 +34,7 @@ const homePageReducer = (state = initialState, action) =>
         break;
 
       case ENTER_LIVE_EVENT:
-        draft.isUserEnterEvent = action.params
+        draft.isUserEnterEvent = action.params;
         break;
     }
   });

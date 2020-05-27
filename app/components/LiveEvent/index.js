@@ -13,72 +13,60 @@ import CaptureImg from 'images/capture.svg';
 import Styled from './style';
 
 function LiveEvent({ adminData, talkLink }) {
-
   useEffect(() => {
     document.body.style.backgroundColor = '#000';
   }, []);
 
   const onSaveImage = () => {
-    const { img_url } = adminData
-    saveAs(img_url, "screenshot.png");
-  }
+    const { img_url: imgUrl } = adminData;
+    saveAs(imgUrl, 'screenshot.png');
+  };
 
   const renderCaptureBtn = () => {
-    const { isCapture } = adminData
+    const { isCapture } = adminData;
     if (isCapture) {
       return (
         <Styled.BtnWrapper>
-          <Styled.CaptureInfo>
-            Take screenshot
-          </Styled.CaptureInfo>
+          <Styled.CaptureInfo>Take screenshot</Styled.CaptureInfo>
           <Styled.Btn onClick={onSaveImage}>
             <Styled.BtnImg src={CaptureImg} alt="capture" />
             <span>Capture</span>
           </Styled.Btn>
         </Styled.BtnWrapper>
-      )
+      );
     }
-    return <div />
-  }
+    return <div />;
+  };
 
   const renderTalkBtn = () => {
 
-    console.log('talkLink', talkLink)
-
     if (!isNull(talkLink)) {
-
       if (!isEmpty(talkLink)) {
         return (
           <Styled.TalkBox>
-            <Styled.TalkInfo>
-              Your guest is live
-            </Styled.TalkInfo>
+            <Styled.TalkInfo>Your guest is live</Styled.TalkInfo>
             <Styled.Btn href={talkLink} target="_blank">
               Talk Now
             </Styled.Btn>
           </Styled.TalkBox>
-        )
+        );
       }
-      return (
-        <Styled.TalkBox>Talk to the guest in few minutes</Styled.TalkBox>
-      )
+      return <Styled.TalkBox>Talk to the guest in few minutes</Styled.TalkBox>;
     }
-    return null
-  }
+    return null;
+  };
 
-  const renderMobileContent = () => {
-    return (
-      <Styled.ProductLaunch>
-        <Styled.EventDetails>
-          <Styled.Heading>Mercedes-Benz</Styled.Heading>
-          <Styled.SubHeading>New Product Launch</Styled.SubHeading>
-        </Styled.EventDetails>
-      </Styled.ProductLaunch>
-    )
-  }
-  
-  if(!isEmpty(adminData)) {
-    const { liveLink } = adminData
+  const renderMobileContent = () => (
+    <Styled.ProductLaunch>
+      <Styled.EventDetails>
+        <Styled.Heading>Mercedes-Benz</Styled.Heading>
+        <Styled.SubHeading>New Product Launch</Styled.SubHeading>
+      </Styled.EventDetails>
+    </Styled.ProductLaunch>
+  );
+
+  if (!isEmpty(adminData)) {
+    const { liveLink } = adminData;
     return (
       <Styled.Root>
         {renderMobileContent()}
@@ -87,8 +75,8 @@ function LiveEvent({ adminData, talkLink }) {
             <Styled.Player
               playing
               url={liveLink}
-              width='100%'
-              height='100%'
+              width="100%"
+              height="100%"
               config={{
                 vimeo: {
                   playerOptions: {
@@ -96,8 +84,8 @@ function LiveEvent({ adminData, talkLink }) {
                     byline: false,
                     controls: true,
                     portrait: false,
-                  }
-                }
+                  },
+                },
               }}
             />
           </Styled.PlayerWrapper>
@@ -108,9 +96,9 @@ function LiveEvent({ adminData, talkLink }) {
           </Styled.Content>
         </Styled.Container>
       </Styled.Root>
-    )
+    );
   }
-  return null
+  return null;
 }
 
 LiveEvent.propTypes = {

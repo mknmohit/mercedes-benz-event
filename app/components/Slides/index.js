@@ -19,7 +19,7 @@ import Styled from './style';
 function Slides({ adminData, onEnterLiveEvent }) {
   const [animateSlideIndex, setanimateSlideIndex] = useState(0);
   const [isContdownOver, setIsCountdownOver] = useState(false);
-  const [engineSound, setEngineSound] = useState(null)
+  const [engineSound, setEngineSound] = useState(null);
 
   useEffect(() => {
     document.body.style.backgroundColor = '#edebeb';
@@ -38,27 +38,27 @@ function Slides({ adminData, onEnterLiveEvent }) {
   };
 
   const onSliderMount = () => {
-    setEngineSound(new Audio(slidesData[0].audio))
-  }
+    setEngineSound(new Audio(slidesData[0].audio));
+  };
 
   const onAfterChange = currentSlide => {
     setanimateSlideIndex(currentSlide);
-    setEngineSound(new Audio(slidesData[currentSlide].audio))
+    setEngineSound(new Audio(slidesData[currentSlide].audio));
   };
 
   const onBeforeChange = () => {
     setanimateSlideIndex(null);
-    stopEngineSound()
+    stopEngineSound();
   };
 
   const playEngineSound = () => {
     engineSound.play();
-  }
+  };
 
   const stopEngineSound = () => {
     engineSound.pause();
     engineSound.currentTime = 0;
-  }
+  };
 
   const sliderSettings = {
     dots: true,
@@ -94,7 +94,7 @@ function Slides({ adminData, onEnterLiveEvent }) {
   };
 
   const renderEventBox = () => {
-    const { isEventStart, liveLink, isEventFinished  } = adminData;
+    const { isEventStart, liveLink, isEventFinished } = adminData;
     if (!isEmpty(liveLink) && isEventStart) {
       return (
         <Styled.EventLiveContainer>
@@ -115,11 +115,7 @@ function Slides({ adminData, onEnterLiveEvent }) {
     }
 
     if (isEventFinished) {
-      return (
-        <Styled.TimeBox>
-          Event is already finished
-        </Styled.TimeBox>
-      )
+      return <Styled.TimeBox>Event is already finished</Styled.TimeBox>;
     }
 
     return <Styled.TimeBox>Event will start soon</Styled.TimeBox>;

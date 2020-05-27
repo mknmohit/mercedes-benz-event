@@ -47,5 +47,5 @@ export const listenAdminDataError = () => ({
 
 export const enterLiveEvent = params => ({
   type: ENTER_LIVE_EVENT,
-  params
+  params,
 });

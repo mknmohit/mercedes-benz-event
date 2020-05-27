@@ -47,30 +47,24 @@ export function HomePage({
   };
 
   const handleEnterLiveEvent = () => {
-    onEnterLiveEvent(true)
-  }
-
-  console.log('homePageStore', homePageStore)
-  console.log('userData', userData)
+    onEnterLiveEvent(true);
+  };
 
   if (isAuthenticated) {
-    const { adminData, isUserEnterEvent, talkLink } = homePageStore
+    const { adminData, isUserEnterEvent, talkLink: meetLink } = homePageStore;
 
     if (isUserEnterEvent) {
       return (
         <Styled.Root>
-          <LiveEvent adminData={adminData} talkLink={talkLink} />
+          <LiveEvent adminData={adminData} talkLink={meetLink} />
           <Footer />
         </Styled.Root>
-      )
+      );
     }
 
     return (
       <Styled.Root>
-        <Slides
-          adminData={adminData}
-          onEnterLiveEvent={handleEnterLiveEvent}
-        />
+        <Slides adminData={adminData} onEnterLiveEvent={handleEnterLiveEvent} />
         <Footer />
       </Styled.Root>
     );

@@ -51,7 +51,6 @@ const Container = styled.div`
     max-width: 60%;
     margin-top: 50px;
   }
-
 `;
 
 const PlayerWrapper = styled.div`
@@ -60,7 +59,7 @@ const PlayerWrapper = styled.div`
   padding-top: 56.25%;
 
   ${props => props.theme.breakpoints.lg} {
-    padding-top: 0;  
+    padding-top: 0;
     height: 70vh;
   }
 `;
@@ -144,7 +143,7 @@ const TalkInfo = styled.span`
 
 const Hr = styled.div`
   height: 1px;
-  background-color: #4B4B4B;
+  background-color: #4b4b4b;
   opacity: 0.6;
   margin: 12vh 16px;
 

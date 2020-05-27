@@ -10,12 +10,19 @@ import { Animated } from 'react-animated-css';
 
 import Styled from './style';
 
-function SlideContent({ animate, index, name, image, audioInfo, onPlayAudio, onStopAudio }) {
-
+function SlideContent({
+  animate,
+  index,
+  name,
+  image,
+  audioInfo,
+  onPlayAudio,
+  onStopAudio,
+}) {
   const handlePlayAudio = e => {
     e.preventDefault();
-    onPlayAudio()
-  }
+    onPlayAudio();
+  };
 
   return (
     <div>
