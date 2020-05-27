@@ -10,9 +10,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { isEmpty } from 'lodash';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import usePrevious from 'utils/usePrevious';
 import Registration from 'components/Registration';
 import Slides from 'components/Slides';
 import LiveEvent from 'components/LiveEvent';
@@ -42,6 +44,14 @@ export function HomePage({
     }
   }, [isAuthenticated]);
 
+  const prevIsEventStart = usePrevious(homePageStore.adminData.isEventStart);
+
+  useEffect(() => {
+    if(prevIsEventStart && homePageStore.adminData.isEventStart === false) {
+      onEnterLiveEvent(false)
+    }
+  }, [homePageStore.adminData.isEventStart])
+
   const handleRegistration = params => {
     onRegister(params);
   };
@@ -53,13 +63,17 @@ export function HomePage({
   if (isAuthenticated) {
     const { adminData, isUserEnterEvent, talkLink: meetLink } = homePageStore;
 
-    if (isUserEnterEvent) {
-      return (
-        <Styled.Root>
-          <LiveEvent adminData={adminData} talkLink={meetLink} />
-          <Footer />
-        </Styled.Root>
-      );
+    if (isUserEnterEvent && !isEmpty(adminData)) {
+      const { isEventStart, liveLink } = adminData
+
+      if (isEventStart && !isEmpty(liveLink)) {
+        return (
+          <Styled.Root>
+            <LiveEvent adminData={adminData} talkLink={meetLink} />
+            <Footer />
+          </Styled.Root>
+        );
+      }
     }
 
     return (
@@ -69,6 +83,7 @@ export function HomePage({
       </Styled.Root>
     );
   }
+
   return (
     <div>
       <Registration onRegister={handleRegistration} />
