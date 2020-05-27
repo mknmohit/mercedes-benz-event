@@ -13,7 +13,7 @@ import {
 
 export const initialState = {
   talkLink: null,
-  isUserEnterEvent: true,
+  isUserEnterEvent: false,
   adminData: {},
 };
 

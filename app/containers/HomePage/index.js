@@ -51,12 +51,18 @@ export function HomePage({
   }
 
   console.log('homePageStore', homePageStore)
+  console.log('userData', userData)
 
   if (isAuthenticated) {
-    const { adminData, isUserEnterEvent } = homePageStore
+    const { adminData, isUserEnterEvent, talkLink } = homePageStore
 
     if (isUserEnterEvent) {
-      return <LiveEvent adminData={adminData} />
+      return (
+        <Styled.Root>
+          <LiveEvent adminData={adminData} talkLink={talkLink} />
+          <Footer />
+        </Styled.Root>
+      )
     }
 
     return (

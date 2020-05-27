@@ -50,6 +50,7 @@ export function* getLogout() {
   try {
     yield call([authRef, authRef.signOut]);
     yield put(logoutSuccess());
+    window.location.reload();
   } catch (error) {
     message.error('Something went wrong, try again');
   }
