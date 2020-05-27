@@ -19,6 +19,7 @@ import Styled from './style';
 function Slides({ adminData, onEnterLiveEvent }) {
   const [animateSlideIndex, setanimateSlideIndex] = useState(0);
   const [isContdownOver, setIsCountdownOver] = useState(false);
+  const [engineSound, setEngineSound] = useState(null)
 
   useEffect(() => {
     document.body.style.backgroundColor = '#edebeb';
@@ -36,13 +37,28 @@ function Slides({ adminData, onEnterLiveEvent }) {
     return 500;
   };
 
+  const onSliderMount = () => {
+    setEngineSound(new Audio(slidesData[0].audio))
+  }
+
   const onAfterChange = currentSlide => {
     setanimateSlideIndex(currentSlide);
+    setEngineSound(new Audio(slidesData[currentSlide].audio))
   };
 
   const onBeforeChange = () => {
     setanimateSlideIndex(null);
+    stopEngineSound()
   };
+
+  const playEngineSound = () => {
+    engineSound.play();
+  }
+
+  const stopEngineSound = () => {
+    engineSound.pause();
+    engineSound.currentTime = 0;
+  }
 
   const sliderSettings = {
     dots: true,
@@ -55,6 +71,7 @@ function Slides({ adminData, onEnterLiveEvent }) {
     cssEase: 'linear',
     afterChange: onAfterChange,
     beforeChange: onBeforeChange,
+    onInit: onSliderMount,
   };
 
   const onCountdownOver = () => setIsCountdownOver(true);
@@ -110,7 +127,7 @@ function Slides({ adminData, onEnterLiveEvent }) {
 
   const renderSlides = () =>
     map(slidesData, (slide, index) => {
-      const { id, name, image, audio, audioInfo } = slide;
+      const { id, name, image, audioInfo } = slide;
       return (
         <SlideContent
           key={id}
@@ -118,8 +135,9 @@ function Slides({ adminData, onEnterLiveEvent }) {
           index={index}
           name={name}
           image={image}
-          audio={audio}
           audioInfo={audioInfo}
+          onPlayAudio={playEngineSound}
+          onStopAudio={stopEngineSound}
         />
       );
     });
