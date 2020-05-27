@@ -15,8 +15,9 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import Registration from 'components/Registration';
 import Slides from 'components/Slides';
+import LiveEvent from 'components/LiveEvent';
 import Footer from 'components/Footer';
-import { register, liveLink, listenAdminData } from './actions';
+import { register, talkLink, listenAdminData, enterLiveEvent } from './actions';
 import makeSelectHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -26,8 +27,9 @@ export function HomePage({
   onRegister,
   userData,
   isAuthenticated,
-  onListenLiveLink,
+  onListenTalkLink,
   onListenAdminData,
+  onEnterLiveEvent,
   homePageStore,
 }) {
   useInjectReducer({ key: 'homePage', reducer });
@@ -35,7 +37,7 @@ export function HomePage({
 
   useEffect(() => {
     if (isAuthenticated) {
-      onListenLiveLink();
+      onListenTalkLink();
       onListenAdminData();
     }
   }, [isAuthenticated]);
@@ -44,13 +46,25 @@ export function HomePage({
     onRegister(params);
   };
 
+  const handleEnterLiveEvent = () => {
+    onEnterLiveEvent(true);
+  };
+
   if (isAuthenticated) {
+    const { adminData, isUserEnterEvent, talkLink: meetLink } = homePageStore;
+
+    if (isUserEnterEvent) {
+      return (
+        <Styled.Root>
+          <LiveEvent adminData={adminData} talkLink={meetLink} />
+          <Footer />
+        </Styled.Root>
+      );
+    }
+
     return (
       <Styled.Root>
-        <Slides
-          liveLink={homePageStore.liveLink}
-          adminData={homePageStore.adminData}
-        />
+        <Slides adminData={adminData} onEnterLiveEvent={handleEnterLiveEvent} />
         <Footer />
       </Styled.Root>
     );
@@ -64,7 +78,8 @@ export function HomePage({
 
 HomePage.propTypes = {
   onRegister: PropTypes.func,
-  onListenLiveLink: PropTypes.func,
+  onListenTalkLink: PropTypes.func,
+  onEnterLiveEvent: PropTypes.func,
   onListenAdminData: PropTypes.func,
   userData: PropTypes.object,
   isAuthenticated: PropTypes.bool,
@@ -78,8 +93,9 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onRegister: params => dispatch(register(params)),
-    onListenLiveLink: () => dispatch(liveLink()),
+    onListenTalkLink: () => dispatch(talkLink()),
     onListenAdminData: () => dispatch(listenAdminData()),
+    onEnterLiveEvent: params => dispatch(enterLiveEvent(params)),
   };
 }
 

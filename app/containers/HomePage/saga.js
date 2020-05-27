@@ -7,10 +7,10 @@ import { message } from 'antd';
 import { authRef, dbRef } from 'config/firebase';
 import { signIn, registerSuccess, registerError } from 'containers/App/actions';
 import { makeSelectUserData } from 'containers/App/selectors';
-import { REGISTER, LIVE_LINK, LISTEN_ADMIN_DATA } from './constants';
+import { REGISTER, TALK_LINK, LISTEN_ADMIN_DATA } from './constants';
 import {
-  liveLinkSuccess,
-  liveLinkError,
+  talkLinkSuccess,
+  talkLinkError,
   listenAdminDataSuccess,
   listenAdminDataError,
 } from './actions';
@@ -70,7 +70,7 @@ export function* postRegister({ params }) {
   }
 }
 
-export function* listenLiveLink() {
+export function* listenTalkLink() {
   const userData = yield select(makeSelectUserData());
   const ref = dbRef.collection('registration').doc(userData.uid);
 
@@ -89,10 +89,10 @@ export function* listenLiveLink() {
   try {
     while (true) {
       const link = yield take(channel);
-      yield put(liveLinkSuccess(link));
+      yield put(talkLinkSuccess(link));
     }
   } catch (err) {
-    yield put(liveLinkError());
+    yield put(talkLinkError());
   }
 }
 
@@ -125,6 +125,6 @@ export default function* homePageSaga() {
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
   yield takeLatest(REGISTER, postRegister);
-  yield takeLatest(LIVE_LINK, listenLiveLink);
+  yield takeLatest(TALK_LINK, listenTalkLink);
   yield takeLatest(LISTEN_ADMIN_DATA, listenAdminDB);
 }
