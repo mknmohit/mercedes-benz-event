@@ -16,3 +16,7 @@ export const LISTEN_ADMIN_DATA_SUCCESS =
 export const LISTEN_ADMIN_DATA_ERROR = 'app/HomePage/LISTEN_ADMIN_DATA_ERROR';
 
 export const ENTER_LIVE_EVENT = 'app/HomePage/ENTER_LIVE_EVENT';
+
+export const SLIDES_DATA = 'app/HomePage/SLIDES_DATA';
+export const SLIDES_DATA_SUCCESS = 'app/HomePage/SLIDES_DATA_SUCCESS';
+export const SLIDES_DATA_ERROR = 'app/HomePage/SLIDES_DATA_ERROR';
