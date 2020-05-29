@@ -13,10 +13,11 @@ import { isEmpty, map } from 'lodash';
 import DateCountdown from 'react-date-countdown-timer';
 
 import SlideContent from 'components/SlideContent';
-import { slidesData } from './data';
+import Slide1Img from 'images/slide-1-car.png';
+// import { slidesData } from './data';
 import Styled from './style';
 
-function Slides({ adminData, onEnterLiveEvent }) {
+function Slides({ adminData, onEnterLiveEvent, slidesData, isLoading }) {
   const [animateSlideIndex, setanimateSlideIndex] = useState(0);
   const [isContdownOver, setIsCountdownOver] = useState(false);
   const [engineSound, setEngineSound] = useState(null);
@@ -123,14 +124,15 @@ function Slides({ adminData, onEnterLiveEvent }) {
 
   const renderSlides = () =>
     map(slidesData, (slide, index) => {
-      const { id, name, image, audioInfo } = slide;
+      const { id, name, image, audioInfo, gifTransparent } = slide;
       return (
         <SlideContent
           key={id}
           animate={animateSlideIndex}
           index={index}
           name={name}
-          image={image}
+          image={image || Slide1Img}
+          gif={gifTransparent}
           audioInfo={audioInfo}
           onPlayAudio={playEngineSound}
           onStopAudio={stopEngineSound}
@@ -138,27 +140,40 @@ function Slides({ adminData, onEnterLiveEvent }) {
       );
     });
 
-  return (
-    <Styled.Row>
-      <Col xs={24}>
-        <Styled.Root>
-          <Styled.Container>
-            <Styled.EventDetails>
-              <Styled.Heading>Mercedes-Benz</Styled.Heading>
-              <Styled.SubHeading>New Product Launch</Styled.SubHeading>
-              {renderEventBox()}
-            </Styled.EventDetails>
-          </Styled.Container>
-          <Styled.Slides {...sliderSettings}>{renderSlides()}</Styled.Slides>
-        </Styled.Root>
-      </Col>
-    </Styled.Row>
-  );
+  if(isLoading) {
+    return (
+      <Styled.LoaderWrapper>
+        <Styled.Loader />
+      </Styled.LoaderWrapper>
+    );
+  }
+
+  if(!isEmpty(slidesData)) {
+    return (
+      <Styled.Row>
+        <Col xs={24}>
+          <Styled.Root>
+            <Styled.Container>
+              <Styled.EventDetails>
+                <Styled.Heading>Mercedes-Benz</Styled.Heading>
+                <Styled.SubHeading>New Product Launch</Styled.SubHeading>
+                {renderEventBox()}
+              </Styled.EventDetails>
+            </Styled.Container>
+            <Styled.Slides {...sliderSettings}>{renderSlides()}</Styled.Slides>
+          </Styled.Root>
+        </Col>
+      </Styled.Row>
+    );
+  }
+  return null
 }
 
 Slides.propTypes = {
   adminData: PropTypes.object,
   onEnterLiveEvent: PropTypes.func,
+  slidesData: PropTypes.array,
+  isLoading: PropTypes.bool,
 };
 
 export default Slides;

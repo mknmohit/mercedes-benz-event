@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import slidesBg from 'images/slide-bg.png';
 import Slider from 'react-slick';
 import { Button, Row as antRow } from 'antd';
-import { RightOutlined, LeftOutlined } from '@ant-design/icons';
+import { RightOutlined, LeftOutlined, LoadingOutlined } from '@ant-design/icons';
 
 const commonStyling = `
   background-color: #000;
@@ -253,6 +253,19 @@ const NextBtn = styled(RightOutlined)`
   }
 `;
 
+const LoaderWrapper = styled.div`
+  height: calc(100vh - 44px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #edebeb;
+`;
+
+const Loader = styled(LoadingOutlined)`
+  font-size: 34px;
+  color: #4cace9;
+`;
+
 export default {
   Row,
   Root,
@@ -269,4 +282,6 @@ export default {
   Slides,
   PrevBtn,
   NextBtn,
+  LoaderWrapper,
+  Loader
 };

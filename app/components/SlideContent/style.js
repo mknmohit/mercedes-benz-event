@@ -1,13 +1,36 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import CarPeddle from 'images/peddle.png';
 
 const SlideImg = styled.img`
-  display: flex;
-  margin: 10px auto 80px;
+  && {
+    display: flex;
+    margin: 10px auto 80px;
 
-  ${props => props.theme.breakpoints.md} {
-    width: calc(100% - 550px);
-    margin-bottom: 0;
+    ${props => props.theme.breakpoints.md} {
+      width: calc(100% - 550px);
+      margin-bottom: 0;
+    }
+
+    ${props => props.isGif && css`
+      display: none;
+    `}
+  }
+`;
+
+const SlideGif =  styled.img`
+  && {
+    display: none;
+    margin: 10px auto 80px;
+    width: 94%;
+
+    ${props => props.theme.breakpoints.md} {
+      width: calc(100% - 605px);
+      margin-bottom: 0;
+    }
+
+    ${props => props.isGif && css`
+      display: flex;
+    `}
   }
 `;
 
@@ -90,6 +113,7 @@ const PeddleImg = styled.div`
 
 export default {
   SlideImg,
+  SlideGif,
   ModelName,
   PeddleContainer,
   PeddleInfo,
