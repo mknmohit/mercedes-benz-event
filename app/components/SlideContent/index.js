@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Animated } from 'react-animated-css';
 
@@ -15,18 +15,34 @@ function SlideContent({
   index,
   name,
   image,
+  gif,
   audioInfo,
   onPlayAudio,
   onStopAudio,
 }) {
-  const handlePlayAudio = e => {
+  const [showGif, setShowGif] = useState(false);
+
+  const handlePeddleHold = e => {
     e.preventDefault();
+    setShowGif(true);
     onPlayAudio();
   };
 
+  const handlePeddleRelease = () => {
+    setShowGif(false);
+    onStopAudio();
+  };
+
+  const renderSlideImg = () => (
+    <>
+      <Styled.SlideImg src={image} alt="car" isGif={showGif} />
+      <Styled.SlideGif src={gif} alt="car" isGif={showGif} />
+    </>
+  );
+
   return (
     <div>
-      <Styled.SlideImg src={image} alt="car" />
+      {renderSlideImg()}
       <Animated
         animationIn="fadeInLeft"
         animationInDuration={400}
@@ -36,11 +52,11 @@ function SlideContent({
         <Styled.PeddleContainer>
           <Styled.PeddleInfo>{audioInfo}</Styled.PeddleInfo>
           <Styled.Peddle
-            onMouseDown={handlePlayAudio}
-            onMouseUp={onStopAudio}
-            onBlur={onStopAudio}
-            onTouchStart={handlePlayAudio}
-            onTouchEnd={onStopAudio}
+            onMouseDown={handlePeddleHold}
+            onMouseUp={handlePeddleRelease}
+            onBlur={handlePeddleRelease}
+            onTouchStart={handlePeddleHold}
+            onTouchEnd={handlePeddleRelease}
           >
             <Styled.PeddleImg />
           </Styled.Peddle>
@@ -55,6 +71,7 @@ SlideContent.propTypes = {
   index: PropTypes.number,
   name: PropTypes.string,
   image: PropTypes.string,
+  gif: PropTypes.string,
   audioInfo: PropTypes.string,
   onPlayAudio: PropTypes.func,
   onStopAudio: PropTypes.func,

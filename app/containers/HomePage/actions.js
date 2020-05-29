@@ -12,6 +12,9 @@ import {
   LISTEN_ADMIN_DATA_SUCCESS,
   LISTEN_ADMIN_DATA_ERROR,
   ENTER_LIVE_EVENT,
+  SLIDES_DATA,
+  SLIDES_DATA_SUCCESS,
+  SLIDES_DATA_ERROR,
 } from './constants';
 
 export const register = params => ({
@@ -48,4 +51,17 @@ export const listenAdminDataError = () => ({
 export const enterLiveEvent = params => ({
   type: ENTER_LIVE_EVENT,
   params,
+});
+
+export const fetchSlidesData = () => ({
+  type: SLIDES_DATA,
+});
+
+export const slidesDataSuccess = payload => ({
+  type: SLIDES_DATA_SUCCESS,
+  payload,
+});
+
+export const slidesDataError = () => ({
+  type: SLIDES_DATA_ERROR,
 });

@@ -1,5 +1,5 @@
 // import { take, call, put, select } from 'redux-saga/effects';
-import { put, takeLatest, take, select } from 'redux-saga/effects';
+import { put, call, takeLatest, take, select } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 import { isEmpty } from 'lodash';
 import { message } from 'antd';
@@ -7,12 +7,19 @@ import { message } from 'antd';
 import { authRef, dbRef } from 'config/firebase';
 import { signIn, registerSuccess, registerError } from 'containers/App/actions';
 import { makeSelectUserData } from 'containers/App/selectors';
-import { REGISTER, TALK_LINK, LISTEN_ADMIN_DATA } from './constants';
+import {
+  REGISTER,
+  TALK_LINK,
+  LISTEN_ADMIN_DATA,
+  SLIDES_DATA,
+} from './constants';
 import {
   talkLinkSuccess,
   talkLinkError,
   listenAdminDataSuccess,
   listenAdminDataError,
+  slidesDataSuccess,
+  slidesDataError,
 } from './actions';
 
 export function* postRegister({ params }) {
@@ -116,6 +123,29 @@ export function* listenAdminDB() {
   }
 }
 
+export function* getSlidesData() {
+  const ref = dbRef.collection('admin').doc('slideData');
+
+  const fetchSlidesData = () =>
+    new Promise((resolve, reject) => {
+      ref.get().then(results => {
+        if (results) {
+          resolve(results.data().cars);
+        } else {
+          reject();
+        }
+      });
+    });
+
+  try {
+    const response = yield call(fetchSlidesData);
+    yield put(slidesDataSuccess(response));
+  } catch (err) {
+    message.error('Something went wrong, please try again', 5);
+    yield put(slidesDataError());
+  }
+}
+
 /**
  * Root saga manages watcher lifecycle
  */
@@ -127,4 +157,5 @@ export default function* homePageSaga() {
   yield takeLatest(REGISTER, postRegister);
   yield takeLatest(TALK_LINK, listenTalkLink);
   yield takeLatest(LISTEN_ADMIN_DATA, listenAdminDB);
+  yield takeLatest(SLIDES_DATA, getSlidesData);
 }

@@ -14,10 +14,7 @@ function Router({ isAuthenticated }) {
         exact
         path="/"
         render={routeProps => (
-          <HomePage
-            {...routeProps}
-            isAuthenticated={isAuthenticated}
-          />
+          <HomePage {...routeProps} isAuthenticated={isAuthenticated} />
         )}
       />
       <Route component={NotFoundPage} />
