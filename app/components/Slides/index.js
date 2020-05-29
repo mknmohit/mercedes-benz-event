@@ -14,7 +14,6 @@ import DateCountdown from 'react-date-countdown-timer';
 
 import SlideContent from 'components/SlideContent';
 import Slide1Img from 'images/slide-1-car.png';
-// import { slidesData } from './data';
 import Styled from './style';
 
 function Slides({ adminData, onEnterLiveEvent, slidesData, isLoading }) {
@@ -140,7 +139,7 @@ function Slides({ adminData, onEnterLiveEvent, slidesData, isLoading }) {
       );
     });
 
-  if(isLoading) {
+  if (isLoading) {
     return (
       <Styled.LoaderWrapper>
         <Styled.Loader />
@@ -148,7 +147,7 @@ function Slides({ adminData, onEnterLiveEvent, slidesData, isLoading }) {
     );
   }
 
-  if(!isEmpty(slidesData)) {
+  if (!isEmpty(slidesData)) {
     return (
       <Styled.Row>
         <Col xs={24}>
@@ -166,7 +165,7 @@ function Slides({ adminData, onEnterLiveEvent, slidesData, isLoading }) {
       </Styled.Row>
     );
   }
-  return null
+  return null;
 }
 
 Slides.propTypes = {

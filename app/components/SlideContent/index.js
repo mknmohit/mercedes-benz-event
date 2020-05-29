@@ -20,28 +20,25 @@ function SlideContent({
   onPlayAudio,
   onStopAudio,
 }) {
-
-  const [ showGif, setShowGif] = useState(false);
+  const [showGif, setShowGif] = useState(false);
 
   const handlePeddleHold = e => {
     e.preventDefault();
     setShowGif(true);
     onPlayAudio();
-  }
+  };
 
   const handlePeddleRelease = () => {
     setShowGif(false);
-    onStopAudio()
-  }
+    onStopAudio();
+  };
 
-  const renderSlideImg = () => {
-    return (
-      <>
-        <Styled.SlideImg src={image} alt="car" isGif={showGif} />
-        <Styled.SlideGif src={gif} alt="car" isGif={showGif} />
-      </>
-    )
-  }
+  const renderSlideImg = () => (
+    <>
+      <Styled.SlideImg src={image} alt="car" isGif={showGif} />
+      <Styled.SlideGif src={gif} alt="car" isGif={showGif} />
+    </>
+  );
 
   return (
     <div>

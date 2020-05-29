@@ -45,7 +45,7 @@ const homePageReducer = (state = initialState, action) =>
       case SLIDES_DATA:
         draft.loadingSlidesData = true;
         break;
-      
+
       case SLIDES_DATA_SUCCESS:
         draft.loadingSlidesData = false;
         draft.slidesData = action.payload;

@@ -19,7 +19,13 @@ import Registration from 'components/Registration';
 import Slides from 'components/Slides';
 import LiveEvent from 'components/LiveEvent';
 import Footer from 'components/Footer';
-import { register, talkLink, listenAdminData, enterLiveEvent, slidesData } from './actions';
+import {
+  register,
+  talkLink,
+  listenAdminData,
+  enterLiveEvent,
+  fetchSlidesData,
+} from './actions';
 import makeSelectHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -62,7 +68,13 @@ export function HomePage({
   };
 
   if (isAuthenticated) {
-    const { adminData, slidesData, loadingSlidesData, isUserEnterEvent, talkLink: meetLink } = homePageStore;
+    const {
+      adminData,
+      slidesData,
+      loadingSlidesData,
+      isUserEnterEvent,
+      talkLink: meetLink,
+    } = homePageStore;
 
     if (isUserEnterEvent && !isEmpty(adminData)) {
       const { isEventStart, liveLink } = adminData;
@@ -79,7 +91,12 @@ export function HomePage({
 
     return (
       <Styled.Root>
-        <Slides adminData={adminData} onEnterLiveEvent={handleEnterLiveEvent} slidesData={slidesData} isLoading={loadingSlidesData} />
+        <Slides
+          adminData={adminData}
+          onEnterLiveEvent={handleEnterLiveEvent}
+          slidesData={slidesData}
+          isLoading={loadingSlidesData}
+        />
         <Footer />
       </Styled.Root>
     );
@@ -112,7 +129,7 @@ function mapDispatchToProps(dispatch) {
     onListenTalkLink: () => dispatch(talkLink()),
     onListenAdminData: () => dispatch(listenAdminData()),
     onEnterLiveEvent: params => dispatch(enterLiveEvent(params)),
-    onFetchSlidesData: () => dispatch(slidesData()),
+    onFetchSlidesData: () => dispatch(fetchSlidesData()),
   };
 }
 

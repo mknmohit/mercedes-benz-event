@@ -7,7 +7,12 @@ import { message } from 'antd';
 import { authRef, dbRef } from 'config/firebase';
 import { signIn, registerSuccess, registerError } from 'containers/App/actions';
 import { makeSelectUserData } from 'containers/App/selectors';
-import { REGISTER, TALK_LINK, LISTEN_ADMIN_DATA, SLIDES_DATA } from './constants';
+import {
+  REGISTER,
+  TALK_LINK,
+  LISTEN_ADMIN_DATA,
+  SLIDES_DATA,
+} from './constants';
 import {
   talkLinkSuccess,
   talkLinkError,
@@ -139,7 +144,6 @@ export function* listenAdminDB() {
 // }
 
 export function* getSlidesData() {
-
   const ref = dbRef.collection('admin').doc('slideData');
 
   const fetchSlidesData = () =>
@@ -153,17 +157,14 @@ export function* getSlidesData() {
       });
     });
 
-    
   try {
-    const response = yield call(fetchSlidesData)
-    console.log('response', response)
+    const response = yield call(fetchSlidesData);
     yield put(slidesDataSuccess(response));
   } catch (err) {
-    message.error('Something went wrong, please try again', 5)
+    message.error('Something went wrong, please try again', 5);
     yield put(slidesDataError());
   }
 }
-
 
 /**
  * Root saga manages watcher lifecycle

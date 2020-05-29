@@ -2,7 +2,11 @@ import styled, { keyframes } from 'styled-components';
 import slidesBg from 'images/slide-bg.png';
 import Slider from 'react-slick';
 import { Button, Row as antRow } from 'antd';
-import { RightOutlined, LeftOutlined, LoadingOutlined } from '@ant-design/icons';
+import {
+  RightOutlined,
+  LeftOutlined,
+  LoadingOutlined,
+} from '@ant-design/icons';
 
 const commonStyling = `
   background-color: #000;
@@ -283,5 +287,5 @@ export default {
   PrevBtn,
   NextBtn,
   LoaderWrapper,
-  Loader
+  Loader,
 };

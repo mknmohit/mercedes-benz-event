@@ -14,8 +14,7 @@ import {
   ENTER_LIVE_EVENT,
   SLIDES_DATA,
   SLIDES_DATA_SUCCESS,
-  SLIDES_DATA_E,
-  SLIDSLIDES_DATA_ERROR,
+  SLIDES_DATA_ERROR,
 } from './constants';
 
 export const register = params => ({
@@ -54,11 +53,9 @@ export const enterLiveEvent = params => ({
   params,
 });
 
-export const slidesData = () => {
-  console.log('fetch slide data action')
-  return {
+export const fetchSlidesData = () => ({
   type: SLIDES_DATA,
-}};
+});
 
 export const slidesDataSuccess = payload => ({
   type: SLIDES_DATA_SUCCESS,

@@ -11,13 +11,15 @@ const SlideImg = styled.img`
       margin-bottom: 0;
     }
 
-    ${props => props.isGif && css`
-      display: none;
-    `}
+    ${props =>
+    props.isGif &&
+      css`
+        display: none;
+      `}
   }
 `;
 
-const SlideGif =  styled.img`
+const SlideGif = styled.img`
   && {
     display: none;
     margin: 10px auto 80px;
@@ -28,9 +30,11 @@ const SlideGif =  styled.img`
       margin-bottom: 0;
     }
 
-    ${props => props.isGif && css`
-      display: flex;
-    `}
+    ${props =>
+    props.isGif &&
+      css`
+        display: flex;
+      `}
   }
 `;
 
