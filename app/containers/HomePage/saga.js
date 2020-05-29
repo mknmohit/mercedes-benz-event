@@ -123,26 +123,6 @@ export function* listenAdminDB() {
   }
 }
 
-// export function* getAuth() {
-//   const onAuthStateChanged = () =>
-//     new Promise((resolve, reject) => {
-//       authRef.onAuthStateChanged(user => {
-//         if (user) {
-//           resolve(user);
-//         } else {
-//           reject();
-//         }
-//       });
-//     });
-
-//   try {
-//     const user = yield call(onAuthStateChanged);
-//     yield put(authSuccess(user));
-//   } catch (error) {
-//     yield put(authError());
-//   }
-// }
-
 export function* getSlidesData() {
   const ref = dbRef.collection('admin').doc('slideData');
 
