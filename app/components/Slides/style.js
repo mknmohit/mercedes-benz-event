@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import slidesBg from 'images/slide-bg.png';
 import Slider from 'react-slick';
 import { Button, Row as antRow } from 'antd';
@@ -72,6 +72,10 @@ const Root = styled.div`
   ${props => props.theme.breakpoints.lg} {
     min-height: 100vh;
   }
+
+  ${props => props.loadingImages && css`
+    display: none;
+  `}
 `;
 
 const Container = styled.div`

@@ -19,6 +19,7 @@ function SlideContent({
   audioInfo,
   onPlayAudio,
   onStopAudio,
+  onImgLoad,
 }) {
   const [showGif, setShowGif] = useState(false);
 
@@ -36,7 +37,7 @@ function SlideContent({
   const renderSlideImg = () => (
     <>
       <Styled.SlideImg src={image} alt="car" isGif={showGif} />
-      <Styled.SlideGif src={gif} alt="car" isGif={showGif} />
+      <Styled.SlideGif src={gif} alt="car" isGif={showGif} onLoad={onImgLoad} />
     </>
   );
 
@@ -75,6 +76,7 @@ SlideContent.propTypes = {
   audioInfo: PropTypes.string,
   onPlayAudio: PropTypes.func,
   onStopAudio: PropTypes.func,
+  onImgLoad: PropTypes.func,
 };
 
 export default SlideContent;
