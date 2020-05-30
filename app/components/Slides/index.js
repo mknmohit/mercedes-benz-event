@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Col } from 'antd';
 import 'slick-carousel/slick/slick.css';
@@ -20,10 +20,21 @@ function Slides({ adminData, onEnterLiveEvent, slidesData, isLoading }) {
   const [animateSlideIndex, setanimateSlideIndex] = useState(0);
   const [isContdownOver, setIsCountdownOver] = useState(false);
   const [engineSound, setEngineSound] = useState(null);
+  const [loadingImages, setLoadingImages] = useState(true);
 
   useEffect(() => {
     document.body.style.backgroundColor = '#edebeb';
   }, []);
+
+  const counter = useRef(0);
+
+  const imageLoaded = () => {
+    counter.current += 1;
+    console.log(counter.current)
+    if (counter.current >= slidesData.length) {
+      setLoadingImages(false);
+    }
+  }
 
   const getSliderSpeed = () => {
     const width =
@@ -135,23 +146,28 @@ function Slides({ adminData, onEnterLiveEvent, slidesData, isLoading }) {
           audioInfo={audioInfo}
           onPlayAudio={playEngineSound}
           onStopAudio={stopEngineSound}
+          onImgLoad={imageLoaded}
         />
       );
     });
-
-  if (isLoading) {
+  
+  const renderLoader = () => {
     return (
       <Styled.LoaderWrapper>
         <Styled.Loader />
       </Styled.LoaderWrapper>
-    );
+    )
+  }
+
+  if (isLoading) {
+    return renderLoader();
   }
 
   if (!isEmpty(slidesData)) {
     return (
       <Styled.Row>
         <Col xs={24}>
-          <Styled.Root>
+          <Styled.Root loadingImages={loadingImages}>
             <Styled.Container>
               <Styled.EventDetails>
                 <Styled.Heading>Mercedes-Benz</Styled.Heading>
@@ -161,6 +177,7 @@ function Slides({ adminData, onEnterLiveEvent, slidesData, isLoading }) {
             </Styled.Container>
             <Styled.Slides {...sliderSettings}>{renderSlides()}</Styled.Slides>
           </Styled.Root>
+          {loadingImages && renderLoader()}
         </Col>
       </Styled.Row>
     );
