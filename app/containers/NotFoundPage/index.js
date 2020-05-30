@@ -6,14 +6,23 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { Result, Button } from 'antd';
 
-import messages from './messages';
+import Footer from 'components/Footer';
+import Styled from './style';
 
 export default function NotFound() {
   return (
-    <h1>
-      <FormattedMessage {...messages.header} />
-    </h1>
+    <Styled.Root>
+      <Styled.Container>
+        <Result
+          status="404"
+          title="404"
+          subTitle="Sorry, the page you visited does not exist."
+          extra={<Button type="primary" href="/">Back Home</Button>}
+        />
+      </Styled.Container>
+      <Footer />
+    </Styled.Root>
   );
 }
