@@ -34,8 +34,6 @@ function SlideContent({
     onStopAudio();
   };
 
-  console.log('onImgLoad', onImgLoad)
-
   const renderSlideImg = () => (
     <>
       <Styled.SlideImg src={image} alt="car" isGif={showGif} />

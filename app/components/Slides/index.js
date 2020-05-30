@@ -30,7 +30,6 @@ function Slides({ adminData, onEnterLiveEvent, slidesData, isLoading }) {
 
   const imageLoaded = () => {
     counter.current += 1;
-    console.log(counter.current)
     if (counter.current >= slidesData.length) {
       setLoadingImages(false);
     }
