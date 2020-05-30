@@ -13,7 +13,6 @@ import { isEmpty, map } from 'lodash';
 import DateCountdown from 'react-date-countdown-timer';
 
 import SlideContent from 'components/SlideContent';
-import Slide1Img from 'images/slide-1-car.png';
 import Styled from './style';
 
 function Slides({ adminData, onEnterLiveEvent, slidesData, isLoading }) {
@@ -140,7 +139,7 @@ function Slides({ adminData, onEnterLiveEvent, slidesData, isLoading }) {
           animate={animateSlideIndex}
           index={index}
           name={name}
-          image={image || Slide1Img}
+          image={image}
           gif={gifTransparent}
           audioInfo={audioInfo}
           onPlayAudio={playEngineSound}

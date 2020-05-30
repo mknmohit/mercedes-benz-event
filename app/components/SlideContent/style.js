@@ -7,7 +7,7 @@ const SlideImg = styled.img`
     margin: 10px auto 80px;
 
     ${props => props.theme.breakpoints.md} {
-      width: calc(100% - 550px);
+      width: 50%;
       margin-bottom: 0;
     }
 
@@ -23,10 +23,9 @@ const SlideGif = styled.img`
   && {
     display: none;
     margin: 10px auto 80px;
-    width: 94%;
 
     ${props => props.theme.breakpoints.md} {
-      width: calc(100% - 605px);
+      width: 50%;
       margin-bottom: 0;
     }
 
