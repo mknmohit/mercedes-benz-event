@@ -7,7 +7,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Row, message } from 'antd';
-import { isEmpty, trim } from 'lodash';
+import { isEmpty, trim, replace, toLower } from 'lodash';
 
 import CarImg from 'images/reg.jpg';
 import InputField from 'components/InputField';
@@ -43,9 +43,9 @@ function Registration({ onRegister }) {
 
   const validation = () => {
     const { name, mobile, checkbox } = formData;
-
+    const updatedName = trim(name)
     const isFiledsEmpty = isEmpty(name) || isEmpty(mobile) || !checkbox;
-    const isNameInvalid = name.length < 2;
+    const isNameInvalid = updatedName.length < 2;
     const isMobileValid = mobile.length === 10;
 
     if (isFiledsEmpty) {
@@ -72,10 +72,12 @@ function Registration({ onRegister }) {
         setIsLoading(false);
       }, 15000);
 
+      const updatedName = replace(name, /\s+/g, '')
+      const email = `${toLower(updatedName)}${mobile}@dj.com`
       const params = {
-        name,
+        name: trim(name),
         mobile,
-        email: `${name}${mobile}@dj.com`,
+        email
       };
       onRegister(params);
     }
@@ -86,7 +88,7 @@ function Registration({ onRegister }) {
       target: { name, value, checked, type },
     } = event;
 
-    const updatedValue = type === 'checkbox' ? checked : trim(value);
+    const updatedValue = type === 'checkbox' ? checked : value;
     setFormData({
       ...formData,
       [name]: updatedValue,
